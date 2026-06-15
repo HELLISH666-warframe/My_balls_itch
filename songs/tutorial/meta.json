@@ -1,0 +1,11 @@
+{
+	"displayName": "Tutorial",
+	"difficulties": ["hard"],
+	"bpm": 100,
+	"needsVoices": false,
+	"portrait":"tutorial",
+	"icon": "gf",
+	"color": "#FF0059",
+	"coopAllowed": true,
+	"opponentModeAllowed": true
+}

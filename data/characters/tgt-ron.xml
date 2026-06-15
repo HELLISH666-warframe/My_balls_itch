@@ -1,0 +1,12 @@
+<!DOCTYPE codename-engine-character>
+<character x="0" y="280" sprite="trollRon" scale="1.1" antialiasing="false" flipX="true" camx="75" camy="40" isPlayer="true" color="#F0391A">
+	<anim name="idle" anim="trollRon idle" fps="12"/>
+	<anim name="singLEFT" anim="trollRon left" fps="12"/>
+	<anim name="singLEFTmiss" anim="trollRon missl" fps="12"/>
+	<anim name="singDOWN" anim="trollRon down" fps="12"/>
+	<anim name="singDOWNmiss" anim="trollRon missd" fps="12"/>
+	<anim name="singUP" anim="trollRon up" fps="12"/>
+	<anim name="singUPmiss" anim="trollRon missu" fps="12"/>
+	<anim name="singRIGHT" anim="trollRon right" fps="12"/>
+	<anim name="singRIGHTmiss" anim="trollRon missr" fps="12"/>
+</character>

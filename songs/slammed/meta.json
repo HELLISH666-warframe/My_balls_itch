@@ -1,0 +1,10 @@
+{
+	"displayName": "Slammed",
+	"difficulties": ["hard"],
+	"bpm": 200,
+	"portrait":"slammed",
+	"icon": "bambi",
+	"color": "#007F40",
+	"coopAllowed": true,
+	"opponentModeAllowed": true
+}

@@ -1,0 +1,1 @@
+<!DOCTYPE codename-engine-stage><stage folder="stages/classicStages/" zoom="0.9"><spr x="-680" scroll="0.1" sprite="pissedRon_sky" y="-360" name="sky"/><spr x="-680" scroll="0.2" sprite="pissedRon_clouds" y="-360" scale="0.7" name="clouds"/><spr x="-670" sprite="pissedRon_ground" y="-300" name="street"/><gf x="300" y="140"/><dad/><bf x="620" y="45"/></stage>

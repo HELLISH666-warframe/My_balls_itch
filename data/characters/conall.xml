@@ -1,0 +1,8 @@
+<!DOCTYPE codename-engine-character>
+<character x="69" y="190" sprite="ronDsides" camx="-110" camy="65" icon="ron-dsides" color="#6699FF" holdTime="6.1">
+	<anim name="idle" anim="ronIdle"/>
+	<anim name="singLEFT" anim="ronLeft" x="73" y="-17"/>
+	<anim name="singRIGHT" anim="ronRight" x="-11" y="-9"/>
+	<anim name="singUP" anim="ronUp" x="10" y="25"/>
+	<anim name="singDOWN" anim="ronDown" x="130" y="-154"/>
+</character>

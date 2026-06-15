@@ -1,0 +1,10 @@
+{
+    "displayName": "Haemorrhage",
+    "difficulties": ["hard"],
+    "bpm": 150.0,
+    "portrait":"scrapped/haemorrhage",
+    "icon": "dripron",
+    "color": "#9271FD",
+    "coopAllowed": true,
+    "opponentModeAllowed": true
+}

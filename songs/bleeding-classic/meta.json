@@ -1,0 +1,10 @@
+{
+	"displayName": "bleeding-classic",
+	"difficulties": ["hard"],
+	"bpm": 200,
+	"portrait":"bleeding-classic",
+	"icon": "hellron-classic",
+	"color": "#010000",
+	"coopAllowed": true,
+	"opponentModeAllowed": true
+}

@@ -1,0 +1,15 @@
+{
+	"color": "#000040",
+	"opponentModeAllowed": true,
+	"difficulties": [
+		"hard"
+	],
+	"icon": "scrapped/rewrite",
+	"portrait": "scrapped/triad",
+	"coopAllowed": true,
+	"stepsPerBeat": 4,
+	"displayName": "Triad",
+	"beatsPerMeasure": 4,
+	"needsVoices": true,
+	"bpm": 180
+}

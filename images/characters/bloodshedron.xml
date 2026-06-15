@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Tex-Packer-EX v0.6.8 https://strawberrysage.github.io/tex-packer-ex
+-->
+<TextureAtlas imagePath="texture.png" width="2879" height="2785">
+  <SubTexture name="bloodshedron down0000.png" x="532" y="1610.5" width="365.5" height="509.5" rotated="true"  frameX="-118" frameY="-337" frameWidth="1280" frameHeight="720"/>
+  <SubTexture name="bloodshedron down0001.png" x="529" y="1097" width="364.5" height="513.5" rotated="true"  frameX="-128.5" frameY="-341" frameWidth="1280" frameHeight="720"/>
+  <SubTexture name="bloodshedron down0002.png" x="893.5" y="1097" width="355" height="505.5" rotated="true"  frameX="-138.5" frameY="-352" frameWidth="1280" frameHeight="720"/>
+  <SubTexture name="bloodshedron down0003.png" x="1616" y="0" width="365" height="494" rotated="true"  frameX="-136.5" frameY="-341.5" frameWidth="1280" frameHeight="720"/>
+  <SubTexture name="bloodshedron down0004.png" x="1248.5" y="1057" width="365" height="485.5" rotated="true"  frameX="-134" frameY="-341.5" frameWidth="1280" frameHeight="720"/>
+  <SubTexture name="bloodshedron down0005.png" x="928" y="554.5" width="365" height="502.5" rotated="true"  frameX="-132.5" frameY="-341" frameWidth="1280" frameHeight="720"/>
+  <SubTexture name="bloodshedron down0006.png" x="1248.5" y="0" width="367.5" height="500.5" rotated="true"  frameX="-134" frameY="-339" frameWidth="1280" frameHeight="720"/>
+  <SubTexture name="bloodshedron down0007.png" x="1293" y="500.5" width="366.5" height="495" rotated="true"  frameX="-135" frameY="-340" frameWidth="1280" frameHeight="720"/>
+  <SubTexture name="bloodshedron idle0000.png" x="1910" y="977.5"  width="298" height="482" frameX="-217.5" frameY="-226.5" frameWidth="1280" frameHeight="720"/>
+  <SubTexture name="bloodshedron idle0001.png" x="1910" y="1900" width="467" height="337.5" rotated="true"  frameX="-200" frameY="-239.5" frameWidth="1280" frameHeight="720"/>
+  <SubTexture name="bloodshedron idle0002.png" x="2558.5" y="479.5"  width="320.5" height="475" frameX="-210.5" frameY="-232" frameWidth="1280" frameHeight="720"/>
+  <SubTexture name="bloodshedron idle0003.png" x="1981" y="0"  width="292.5" height="481.5" frameX="-215.5" frameY="-226" frameWidth="1280" frameHeight="720"/>
+  <SubTexture name="bloodshedron idle0004.png" x="2273.5" y="0"  width="294.5" height="479.5" frameX="-217" frameY="-228.5" frameWidth="1280" frameHeight="720"/>
+  <SubTexture name="bloodshedron idle0005.png" x="1959" y="494"  width="305" height="481.5" frameX="-216" frameY="-226.5" frameWidth="1280" frameHeight="720"/>
+  <SubTexture name="bloodshedron idle0006.png" x="897.5" y="1602.5"  width="298.5" height="486.5" frameX="-218.5" frameY="-222" frameWidth="1280" frameHeight="720"/>
+  <SubTexture name="bloodshedron idle0007.png" x="2264" y="481.5"  width="294.5" height="480.5" frameX="-218.5" frameY="-228" frameWidth="1280" frameHeight="720"/>
+  <SubTexture name="bloodshedron idle0008.png" x="1659.5" y="494"  width="299.5" height="483.5" frameX="-216.5" frameY="-225" frameWidth="1280" frameHeight="720"/>
+  <SubTexture name="bloodshedron idle0009.png" x="1613.5" y="995.5"  width="296.5" height="485" frameX="-217.5" frameY="-223.5" frameWidth="300" frameHeight="720"/>
+  <SubTexture name="bloodshedron left0000.png" x="0" y="0" width="463.5" height="581.5" rotated="true"  frameX="-0.5" frameY="-245.5" frameWidth="1280" frameHeight="720"/>
+  <SubTexture name="bloodshedron left0001.png" x="1845" y="2244.5" width="460" height="522" rotated="true"  frameX="-23.5" frameY="-249" frameWidth="1280" frameHeight="720"/>
+  <SubTexture name="bloodshedron left0002.png" x="2264" y="1437" width="475" height="463" rotated="true"  frameX="-78" frameY="-234" frameWidth="1280" frameHeight="720"/>
+  <SubTexture name="bloodshedron left0003.png" x="2264" y="962" width="478" height="475" rotated="true"  frameX="-66" frameY="-231" frameWidth="1280" frameHeight="720"/>
+  <SubTexture name="bloodshedron left0004.png" x="1196" y="1602.5" width="469.5" height="485.5" rotated="true"  frameX="-55" frameY="-239.5" frameWidth="1280" frameHeight="720"/>
+  <SubTexture name="bloodshedron right0000.png" x="0" y="2244.5" width="440" height="540.5" rotated="true"  frameX="-224.5" frameY="-267.5" frameWidth="1280" frameHeight="720"/>
+  <SubTexture name="bloodshedron right0001.png" x="497.5" y="554.5" width="430.5" height="542.5" rotated="true"  frameX="-223" frameY="-277" frameWidth="1280" frameHeight="720"/>
+  <SubTexture name="bloodshedron right0002.png" x="2305" y="2244.5"  width="521.5" height="437" frameX="-209.5" frameY="-270.5" frameWidth="1280" frameHeight="720"/>
+  <SubTexture name="bloodshedron right0003.png" x="975.5" y="2244.5" width="437" height="532.5" rotated="true"  frameX="-210" frameY="-270.5" frameWidth="1280" frameHeight="720"/>
+  <SubTexture name="bloodshedron right0004.png" x="1412.5" y="2244.5" width="432.5" height="528" rotated="true"  frameX="-212" frameY="-275" frameWidth="1280" frameHeight="720"/>
+  <SubTexture name="bloodshedron up0000.png" x="0" y="581.5" width="497.5" height="579" rotated="true"  frameX="-43" frameY="-212" frameWidth="1280" frameHeight="720"/>
+  <SubTexture name="bloodshedron up0001.png" x="463.5" y="0"  width="507.5" height="554.5" frameX="-86" frameY="-155" frameWidth="1280" frameHeight="720"/>
+  <SubTexture name="bloodshedron up0002.png" x="0" y="1704" width="532" height="540.5" rotated="true"  frameX="-67" frameY="-176" frameWidth="1280" frameHeight="720"/>
+  <SubTexture name="bloodshedron up0003.png" x="0" y="1160.5"  width="529" height="543.5" frameX="-73" frameY="-165" frameWidth="1280" frameHeight="720"/>
+  <SubTexture name="bloodshedron up0004.png" x="440" y="2244.5"  width="535.5" height="536.5" frameX="-69" frameY="-172" frameWidth="1280" frameHeight="720"/>
+</TextureAtlas>

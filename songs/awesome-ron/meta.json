@@ -1,0 +1,10 @@
+{
+	"displayName": "awesome-ron",
+	"difficulties": ["hard"],
+	"bpm": 142.0,
+	"portrait":"awesome-ron",
+	"icon": "awesome-ron",
+	"color": "#FFFF00",
+    "coopAllowed": true,
+    "opponentModeAllowed": true
+}

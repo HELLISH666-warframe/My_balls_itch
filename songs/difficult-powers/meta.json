@@ -1,0 +1,10 @@
+{
+	"displayName": "Difficult-powers",
+	"difficulties": ["hard"],
+	"bpm": 210,
+	"portrait":"difficult-powers",
+	"icon": "tgt-sonic",
+	"color": "#00A2E8",
+	"coopAllowed": true,
+	"opponentModeAllowed": true
+}

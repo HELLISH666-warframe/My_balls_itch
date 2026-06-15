@@ -1,0 +1,10 @@
+{
+	"displayName": "Bleeding",
+	"difficulties": ["cool"],
+	"bpm": 200,
+	"portrait":"bleeding",
+	"icon": "dripron",
+	"color": "#000000",
+	"coopAllowed": false,
+	"opponentModeAllowed": false
+}

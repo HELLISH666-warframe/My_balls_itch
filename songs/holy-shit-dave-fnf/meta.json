@@ -1,0 +1,10 @@
+{
+	"displayName": "Holy-shit-dave-fnf",
+	"difficulties": ["hard"],
+	"bpm": 160.0,
+	"portrait":"Holy-shit-dave-fnf",
+	"icon": "dave",
+	"color": "#0000FF",
+    "coopAllowed": true,
+    "opponentModeAllowed": true
+}

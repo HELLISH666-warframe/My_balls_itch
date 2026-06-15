@@ -1,0 +1,10 @@
+{
+	"displayName": "Ayo",
+	"difficulties": ["hard"],
+	"bpm": 150,
+	"portrait":"ayo",
+	"icon": "ronmad",
+	"color": "#8B4513",
+	"coopAllowed": true,
+	"opponentModeAllowed": true
+}

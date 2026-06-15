@@ -1,0 +1,10 @@
+{
+	"displayName": "Trouble",
+	"difficulties": ["hard"],
+	"bpm": 250,
+	"portrait":"scrapped/trouble",
+	"icon": "ron-classic",
+	"color": "#202000",
+	"coopAllowed": true,
+	"opponentModeAllowed": true
+}

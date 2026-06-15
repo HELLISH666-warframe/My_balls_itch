@@ -1,0 +1,21 @@
+<!DOCTYPE codename-mod-options>
+<menu name="Ron Options" desc="Options in a cool way.">
+	<menu name="Shaders" desc="Options to do with shaders.">
+	<checkbox id="glitch" name="Glitch Shaders" desc="Toggles the Glitch Shader."/>
+	<checkbox id="chrom" name="chromatic aberration" desc="Toggles chromatic aberration."/>
+	<number id="chromeOffset" name="rgbintense" min="0.5" max="2" change="0.1" desc="The intensity of chromatic aberration."/>
+    <checkbox id="mosaic" name="mosaic Shader" desc="Toggles the mosaic Shader."/> 
+	<checkbox id="crt" name="CRT Shader" desc="Toggles the CRT shader."/>
+    <checkbox id="colour" name="8bitcolor" desc="Toggles the 8bitcolor shader."/>
+	<checkbox id="vhs" name="VHS Shader" desc="Toggles the VHS Shader."/>
+	<checkbox id="rain" name="RAIN" desc="Toggles the rain shader."/>
+	</menu>
+	<checkbox id="warning" name="warnings" desc="Toggle the startup wearning."/>
+	<checkbox id="website" name="Website Opening" desc="Toggles some songs opening websites in your browser."/>
+    <choice id="TimeBar" name="Time Bar" desc="What should the Time Bar display?">
+		<value name="Time Left" value="Time Left"/>
+		<value name="Time Elapsed" value="Time Elapsed"/>
+		<value name="Song Name" value="Song Name"/>
+		<value name="Disabled" value="Disabled"/>
+	</choice>
+</menu>

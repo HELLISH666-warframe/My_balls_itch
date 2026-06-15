@@ -1,0 +1,10 @@
+{
+	"displayName": "Lights-down-remix",
+	"difficulties": ["hard"],
+	"bpm": 177,
+	"portrait":"lights-down-remix",
+	"icon": "arongus",
+	"color": "#E00020",
+	"coopAllowed": true,
+	"opponentModeAllowed": true
+}

@@ -1,0 +1,10 @@
+{
+	"displayName": "certified-champion",
+	"difficulties": ["hard"],
+	"bpm": 190,
+	"portrait":"certified-champion",
+	"icon": "shittle",
+	"color": "#00FF40",
+	"coopAllowed": true,
+	"opponentModeAllowed": true
+}

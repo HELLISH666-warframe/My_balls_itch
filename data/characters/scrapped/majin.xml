@@ -1,0 +1,9 @@
+<!DOCTYPE codename-engine-character>
+<!-- Made with WizardMantis's Character Converter on https://codename-engine.com/ -->
+<character sprite="scrapped/Majin" icon="scrapped/majin" color="#3c50ff" antialiasing="false" camx="-50" holdTime="6.1">
+	<anim name="singLEFT" anim="Majin left" x="40" y="60" fps="30"/>
+	<anim name="singDOWN" anim="Majin down" x="40" y="60" fps="30"/>
+	<anim name="singUP" anim="Majin up" x="40" y="60" fps="30"/>
+	<anim name="singRIGHT" anim="Majin right" x="40" y="60" fps="30"/>
+	<anim name="idle" anim="Majin idle" x="40" y="60" fps="30" loop="true"/>
+</character>

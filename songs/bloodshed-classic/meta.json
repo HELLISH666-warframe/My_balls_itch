@@ -1,0 +1,10 @@
+{
+	"displayName": "Bloodshed-classic",
+	"difficulties": ["hard"],
+	"bpm": 170,
+	"portrait":"bloodshed-classic",
+	"icon": "hellron-classic",
+	"color": "#280000",
+	"coopAllowed": true,
+	"opponentModeAllowed": true
+}

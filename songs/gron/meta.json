@@ -1,0 +1,10 @@
+{
+	"displayName": "Gron",
+	"difficulties": ["hard"],
+	"bpm": 140,
+	"portrait":"gron",
+	"icon": "gron",
+	"color": "#7F7F7F",
+	"coopAllowed": true,
+	"opponentModeAllowed": true
+}

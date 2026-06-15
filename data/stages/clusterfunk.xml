@@ -1,0 +1,1 @@
+<!DOCTYPE codename-engine-stage><stage zoom="0.6" folder="stages/other/"><spr name="bg" x="-113" y="245" sprite="clusterfunk" scroll="1" beatInterval="2" type="beat" scale="2"/><anim name="bg" anim="BG instance 1" loop="false"/></stage>

@@ -1,0 +1,10 @@
+{
+	"displayName": "Oh-my-god-hes-ballin",
+	"difficulties": ["hard"],
+	"bpm": 140.0,
+	"portrait":"oh-my-god-hes-ballin",
+	"icon": "ballerorina",
+	"color": "#E00020",
+    "coopAllowed": true,
+    "opponentModeAllowed": true
+}

@@ -1,0 +1,10 @@
+{
+	"displayName": "Fardventure",
+	"difficulties": ["hard"],
+	"bpm": 160.0,
+	"portrait":"fardventure",
+	"icon": "sonic",
+	"color": "#002080",
+    "coopAllowed": true,
+    "opponentModeAllowed": true
+}

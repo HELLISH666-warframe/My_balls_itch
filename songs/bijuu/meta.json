@@ -1,0 +1,10 @@
+{
+	"displayName": "Bijuu",
+	"difficulties": ["hard"],
+	"bpm": 150,
+	"portrait":"bijuu",
+	"icon": "bijuuron",
+	"color": "#00B439",
+	"coopAllowed": true,
+	"opponentModeAllowed": true
+}

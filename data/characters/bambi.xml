@@ -1,0 +1,9 @@
+<!DOCTYPE codename-engine-character>
+<character x="110" y="510" sprite="bambiRemake" camx="-20" camy="30" icon="bambi" color="#5DDF03">
+	<anim name="singLEFT" anim="bambi left" x="69" y="0" fps="24" loop="false"/>
+	<anim name="singDOWN" anim="bambi down" x="50" y="-34" fps="24" loop="false"/>
+	<anim name="singRIGHT" anim="bambi right" x="-12" y="0" fps="24" loop="false"/>
+	<anim name="singUP" anim="bambi up" x="52" y="29" fps="24" loop="false"/>
+	<anim name="idle" anim="bambi idle" x="0" y="0" fps="24" loop="false"/>
+	<anim name="phonebreak" anim="bambi phone" x="0" y="0" fps="24" loop="false"/>
+</character>

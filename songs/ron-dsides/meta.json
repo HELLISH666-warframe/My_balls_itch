@@ -1,0 +1,10 @@
+{
+	"displayName": "Ron-dsides",
+	"difficulties": ["hard"],
+	"bpm": 181,
+	"portrait":"ron-dsides",
+	"icon": "ron-dsides",
+	"color": "#9933CC",
+	"coopAllowed": true,
+	"opponentModeAllowed": true
+}

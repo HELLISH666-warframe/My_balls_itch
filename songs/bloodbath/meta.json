@@ -1,0 +1,10 @@
+{
+	"displayName": "Bloodbath",
+	"difficulties": ["hard"],
+	"bpm": 170,
+	"portrait":"bloodbath",
+	"icon": "demonron",
+	"color": "#832034",
+	"coopAllowed": false,
+	"opponentModeAllowed": false
+}

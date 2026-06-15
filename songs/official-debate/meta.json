@@ -1,0 +1,10 @@
+{
+	"displayName": "Official-debate",
+	"difficulties": ["hard"],
+	"bpm": 195,
+	"portrait":"official-debate",
+	"icon": "obama",
+	"color": "#0020C0",
+	"coopAllowed": true,
+	"opponentModeAllowed": true
+}

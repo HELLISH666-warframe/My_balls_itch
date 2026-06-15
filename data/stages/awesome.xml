@@ -1,0 +1,1 @@
+<!DOCTYPE codename-engine-stage><stage zoom="0.8" folder="stages/other/" startCamPosY="600" startCamPosX="1000"><spr name="bg" scale="4" x="300" y="370" sprite="awesome" scroll="1"/><gf x="400" y="130"/><dad x="335" y="160" camxoffset="50" camyoffset="200"/><bf x="740" y="130" camxoffset="-100"/>	</stage>

@@ -1,0 +1,1 @@
+<!DOCTYPE codename-engine-stage><stage zoom="0.9" folder="stages"><spr name="sky" x="-1000" y="-220" sprite="farm/sky" scroll="0.75"/><spr name="gate" x="-650" y="93" scale="1.2" sprite="dave/gate" scroll="0.9"/><spr name="grass" x="-800" y="380" sprite="dave/grass" scale="1.2"/><dad x="-250" y="34"/><bf x="530" y="44"/></stage>

@@ -1,0 +1,9 @@
+<!DOCTYPE codename-engine-character>
+<!-- Made with WizardMantis's Character Converter on https://codename-engine.com/ -->
+<character sprite="scrapped/ronthreedee" icon="ron" color="#ffff00" x="410" y="250" flipX="true" antialiasing="false" camx="440" camy="-200" scale="2">
+	<anim name="singLEFT" anim="left" x="5" y="0"/>
+	<anim name="singDOWN" anim="down" x="-2" y="-5"/>
+	<anim name="singUP" anim="up" x="0" y="5"/>
+	<anim name="idle" anim="idle" indices="0..19"/>
+	<anim name="singRIGHT" anim="right" x="-15" y="-15" fps="16" indices="3..6,6,6,4"/>
+</character>

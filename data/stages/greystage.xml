@@ -1,0 +1,1 @@
+<!DOCTYPE codename-engine-stage><stage zoom="0.69" folder="stages/gron/"><spr name="sky" x="-1700" y="-1430" scale="4" sprite="paperBack" updateHitbox="true" scroll="0.9"/><spr name="street" x="-1400" y="-1700" scale="4" sprite="paperFront" updateHitbox="true" scroll="0.9"/></stage>

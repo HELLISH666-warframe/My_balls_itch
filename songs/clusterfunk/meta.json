@@ -1,0 +1,10 @@
+{
+	"displayName": "cluster-funk",
+	"difficulties": ["hard"],
+	"bpm": 140.0,
+	"portrait":"clusterfunk",
+	"icon": "gdron",
+	"color": "#FF00FF",
+    "coopAllowed": true,
+    "opponentModeAllowed": true
+}

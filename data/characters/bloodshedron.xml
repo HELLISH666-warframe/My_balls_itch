@@ -1,0 +1,8 @@
+<!DOCTYPE codename-engine-character>
+<character x="-140" y="60" camx="-200" camy="200" icon="hellron" color="#131313">
+	<anim name="idle" anim="bloodshedron idle" fps="16" loop="true"/>
+	<anim name="singLEFT" anim="bloodshedron left" fps="8"/>
+	<anim name="singDOWN" anim="bloodshedron down"/>
+	<anim name="singUP" anim="bloodshedron up"/>
+	<anim name="singRIGHT" anim="bloodshedron right"/>
+</character>

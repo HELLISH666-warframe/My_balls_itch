@@ -1,0 +1,8 @@
+<!DOCTYPE codename-engine-character>
+<character x="-20" y="330" sprite="bfGuitar" flipX="true" camx="-20" camy="20" isPlayer="true" icon="bf" color="#0079FD">
+	<anim name="idle" anim="BF idle dance" x="-5"/>
+	<anim name="singRIGHT" anim="bf right" x="10" y="3"/>
+	<anim name="singLEFT" anim="bf left" x="135" y="-2"/>
+	<anim name="singDOWN" anim="bf down" x="-17" y="-21"/>
+	<anim name="singUP" anim="bf up" x="-26" y="47"/>
+</character>

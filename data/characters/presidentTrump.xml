@@ -1,0 +1,9 @@
+<!DOCTYPE codename-engine-character>
+<!-- Made with WizardMantis's Character Converter on https://codename-engine.com/ -->
+<character sprite="americanTrumpthatmakessense" icon="trump" color="#e08b73" x="-270" y="-200" flipX="true" camx="-182" camy="18" holdTime="6.1" scale="0.8">
+	<anim name="idle" anim="idle"/>
+	<anim name="singLEFT" anim="left" x="40" y="-22"/>
+	<anim name="singDOWN" anim="down" x="110" y="-3"/>
+	<anim name="singUP" anim="up" x="20" y="144"/>
+	<anim name="singRIGHT" anim="right" x="230" y="-63"/>
+</character>

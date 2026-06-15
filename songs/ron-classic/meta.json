@@ -1,0 +1,10 @@
+{
+	"displayName": "Ron-classic",
+	"difficulties": ["hard"],
+	"bpm": 180,
+	"portrait":"ron-classic",
+	"icon": "ron-classic",
+	"color": "#C0A000",
+	"coopAllowed": true,
+	"opponentModeAllowed": true
+}

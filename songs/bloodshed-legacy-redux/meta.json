@@ -1,0 +1,10 @@
+{
+	"displayName": "Bloodshed-legacy-redux",
+	"difficulties": ["hard"],
+	"bpm": 142,
+	"portrait":"bloodshed-legacy-redux",
+	"icon": "hahanotscary",
+	"color": "#FF0000",
+	"coopAllowed": true,
+	"opponentModeAllowed": true
+}

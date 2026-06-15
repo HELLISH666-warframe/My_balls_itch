@@ -1,0 +1,1 @@
+function postCreate()  for(i in [wasted_sky,wasted_bgBehind,wasted_bg,wasted_bucket]) i.visible = false;

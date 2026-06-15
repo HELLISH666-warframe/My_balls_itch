@@ -1,0 +1,15 @@
+<!DOCTYPE codename-engine-character>
+<character x="-1821" y="-630" sprite="americanRon" scale="1.5" flipX="true" camx="1500" camy="600" isPlayer="true" icon="ron" color="#F1FD10">
+	<anim name="idle" anim="ron idle" x="-700" y="-490"/>
+	<anim name="singLEFT" anim="ron left" x="-515" y="-465" indices="0..4"/>
+	<anim name="singDOWN" anim="ron down" x="-646" y="-570" indices="0..4"/>
+	<anim name="singUP" anim="ron up" x="-682" y="-439" indices="0..4"/>
+	<anim name="singRIGHT" anim="ron right" x="-770" y="-535" indices="0..4"/>
+	<anim name="singLEFTmiss" anim="ron left miss" x="-515" y="-465"/>
+	<anim name="singDOWNmiss" anim="ron down miss" x="-646" y="-570"/>
+	<anim name="singUPmiss" anim="ron up miss" x="-682" y="-439"/>
+	<anim name="singRIGHTmiss" anim="ron right miss" x="-770" y="-525"/>
+	<anim name="firstDeath" anim="ron death" x="-684" y="-493"/>
+	<anim name="deathLoop" anim="ron dead" x="-685" y="-980"/>
+	<anim name="deathConfirm" anim="ron alive" x="-687" y="-493"/>
+</character>

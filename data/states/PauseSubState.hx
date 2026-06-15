@@ -1,7 +1,6 @@
 import Sys;
 import funkin.options.OptionsMenu;
 import funkin.editors.charter.Charter;
-import flixel.group.FlxTypedSpriteGroup;
 import funkin.options.keybinds.KeybindsOptions;
 import funkin.backend.utils.FunkinParentDisabler;
 
@@ -10,7 +9,6 @@ var optionArray = [["resume song","restart song","settings","shut down","log off
 var curSelPa = [0,0];
 var menu = 0;
 var optionButtons = [[],[]];
-var testt = new FlxTypedSpriteGroup<FlxSprite>();
 var pauseMusic = FlxG.sound.load(Paths.music('breakfast'), 0, true);
 var bit = new CustomShader("8bitcolor");
 var camPause = new FlxCamera();
@@ -32,9 +30,7 @@ function postCreate(){
 		button.ID = i;
 		add(button);
 		button.animation.play("unselect");
-		button.updateHitbox();
 		optionButtons[0].push(button);
-		testt.add(button);
 	}
 
 	for (i in 0...optionArray[1].length) {
@@ -62,7 +58,7 @@ function update(elapsed:Float) {
 				case "restart song": FlxG.resetState();
 				case "settings": new FlxTimer().start(0.01, ()-> menu=optionButtons[1][0].alpha=optionButtons[1][1].alpha=1);
 				curSelPa[1]=0;
-				case "shut down":openSubState(new ModSubState("shut-down"));
+				case "shut down":openSubState(new ModSubState("unofficial/shut-down"));
 				case "log off":
 					PlayState.deathCounter = 0;
 					PlayState.seenCutscene = false;
@@ -82,21 +78,12 @@ function update(elapsed:Float) {
 		changeOption(controls.UP_P ? -1 :1);
 		FlxG.sound.play(Paths.sound('scrollFunny'), 0.6);
 	}
-	if (FlxG.keys.justPressed.O)FlxG.camera.removeShader(bit);
-
-	if(menu==1)return;
-	testt.forEach(function (folder) {
-        if (FlxG.mouse.overlaps(folder)&&FlxG.mouse.justPressed) {
-            if (curSelPa != folder.ID) {
-                changeOption(folder.ID-curSelPa);
-            }
-        }
-    });
 }
 function destroy(){
 	PlayState.instance.camHUD.removeShader(bit);
     FlxG.camera.removeShader(bit);
     FlxG.sound.destroySound(pauseMusic);
 	FlxG.cameras.remove(camPause);
+	FlxG.mouse.visible = false;
 }
 function changeOption(p) curSelPa[menu] = FlxMath.wrap(curSelPa[menu] + p, 0, optionArray[menu].length-1);

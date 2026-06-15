@@ -1,0 +1,1 @@
+<!DOCTYPE codename-engine-stage><stage zoom="0.8" folder="stages/blr/" startCamPosY="600" startCamPosX="1000"><spr name="skyBLR" x="260" y="-60" sprite="madRonV1_sky" scroll="1"/><spr name="ground" x="-500" y="-296" sprite="madRonV1_ground" scroll="1"/><dad/><bf x="980" y="140"/></stage>

@@ -1,0 +1,9 @@
+<!DOCTYPE codename-engine-character>
+<!-- Made with WizardMantis's Character Converter on https://codename-engine.com/ -->
+<character sprite="wastedfucker" icon="ronslightly-classic" color="#bdaa14" x="-420" y="130" antialiasing="false" camx="160" camy="-60" scale="0.999999999999999">
+	<anim name="idle" anim="ron idle"/>
+	<anim name="singLEFT" anim="ron left"/>
+	<anim name="singDOWN" anim="ron down"/>
+	<anim name="singUP" anim="ron up"/>
+	<anim name="singRIGHT" anim="ron right"/>
+</character>

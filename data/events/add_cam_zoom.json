@@ -1,0 +1,13 @@
+{
+	"params": [
+		{
+			"name": "camZoom",
+			"type": "String",
+			"defaultValue": 0.015
+		}, {
+			"name": "hudZoom",
+			"type": "String",
+			"defaultValue": 0.03
+		}
+	]
+}
