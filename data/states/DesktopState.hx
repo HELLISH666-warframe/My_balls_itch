@@ -169,7 +169,6 @@ function acceptCode() {
 		case "winver":FlxG.state.add(new Winver());
 		case "cdplayer": FlxG.state.add(new MusicPlayer()); FlxG.sound.music.volume = 0.01;
 		case "passionatedevs":FlxG.save.data.rtx=!FlxG.save.data.rtx; makeTheModGood(FlxG.save.data.rtx);
-		FlxG.camera.addShader(rtx = new CustomShader("NVIDIA RTX Architecture"));
 		default:CoolUtil.openURL(typeText.text);
 	}
 }
