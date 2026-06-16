@@ -11,7 +11,7 @@ var grey = new CustomShader("grayscale");
 var vhs = new CustomShader("vhs");
 
 songs = [];
-songRealList = [["ron",/*"wasted",*/"ayo","bloodshed","trojan-virus"],
+songRealList = [["ron","wasted","ayo","bloodshed","trojan-virus"],
 	["ron-classic","wasted-classic","ayo-classic","bloodshed-classic","trojan-virus-classic","bleeding-classic"],
 	["Tutorial","bloodbath","official-debate","gron","difficult-powers","bijuu",'trouble',"holy-shit-dave-fnf","slammed","ron-dsides","lights-down-remix","pretty-wacky",'triad',"certified-champion","rong-aisle","bloodshed-legacy-redux","clusterfunk","awesome-ron","oh-my-god-hes-ballin","fardventure","bleeding"]];
 modelist = ["MAIN","CLASSIC","EXTRAS"];

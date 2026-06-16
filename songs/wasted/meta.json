@@ -1,0 +1,9 @@
+{
+	"displayName": "Wasted",
+	"difficulties": ["hard"],
+    "bpm": 130.0,
+	"icon": "ronslightly",
+	"color": "#FFA500",
+	"coopAllowed": true,
+    "opponentModeAllowed": true
+}
