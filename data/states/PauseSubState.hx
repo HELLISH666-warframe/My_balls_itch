@@ -16,12 +16,11 @@ var bit = new CustomShader("8bitcolor");
 var camPause:FlxCamera;
 
 var testt = new FlxTypedSpriteGroup<FlxSprite>();
-var oldMousePos:FlxPoint = FlxPoint.get();
-var curMousePos:FlxPoint = FlxPoint.get();
 function postCreate(){
 	camera = camPause = new FlxCamera();
 	camPause.bgColor = 0x00000000;
 	FlxG.cameras.add(camPause, false);
+	camPause.scroll.set(0,0);
 	FlxG.mouse.visible = true;
 	add(parentDisabler = new FunkinParentDisabler());
 
@@ -53,32 +52,11 @@ function postCreate(){
 	if (FlxG.save.data.colour){FlxG.camera.addShader(bit);
 		PlayState.instance.camHUD.addShader(bit);
 		bit.enablethisbitch = 1.;}
-		
-	FlxG.mouse.getScreenPosition(camPause, oldMousePos);
 }
 function update(elapsed:Float) {
 	if (pauseMusic.volume < .5) pauseMusic.volume += elapsed * .01;
 	for (i in optionButtons[menu]) {
-		if (i.ID == curSelPa[menu]) {i.animation.play("select");
-        if (controls.ACCEPT) {
-            switch (optionArray[menu][i.ID]){
-				case "resume song": close();
-				case "restart song": FlxG.resetState();
-				case "settings": new FlxTimer().start(0.01, ()-> menu=optionButtons[1][0].alpha=optionButtons[1][1].alpha=1);
-				curSelPa[1]=0;
-				case "shut down":openSubState(new ModSubState("unofficial/shut-down"));
-				case "log off":
-					PlayState.deathCounter = 0;
-					PlayState.seenCutscene = false;
-					if (PlayState.chartingMode && Charter.undos.unsaved) PlayState.instance.saveWarn(false);
-					else if(PlayState.isStoryMode) FlxG.switchState(new ModState("DesktopState"));
-					else FlxG.switchState(new FreeplayState());
-
-				case "Change binds": openSubState(new KeybindsOptions());
-				case "Change options": FlxG.switchState(new OptionsMenu((_) -> FlxG.switchState(new PlayState())));
-				}
-			}
-		}
+		if (i.ID == curSelPa[menu]) i.animation.play("select");
 		else i.animation.play("unselect");
 	}
 	if (controls.BACK&&menu==1) menu=optionButtons[1][0].alpha=optionButtons[1][1].alpha=0;
@@ -86,23 +64,17 @@ function update(elapsed:Float) {
 		changeOption(controls.UP_P ? -1 :1);
 		FlxG.sound.play(Paths.sound('scrollFunny'), 0.6);
 	}
+	if(controls.ACCEPT)goOptions();
 }
 
 function postUpdate(elapsed:Float) {
 	if(menu==1)return;
-	
-	FlxG.mouse.getScreenPosition(camPause, curMousePos);
-	if (curMousePos.x != oldMousePos.x || curMousePos.y != oldMousePos.y) {
-		oldMousePos.set(curMousePos.x, curMousePos.y);
-		curSelPa[0] = -1;
-		changeOption(Std.int(curMousePos.y / 39)+1);
-	}
-
 	testt.forEach(function (folder) {
-        if (FlxG.mouse.overlaps(folder)/*&&FlxG.mouse.justPressed*/) {
+        if (actuallyOverlaps(folder,camPause)/*&&FlxG.mouse.justPressed*/) {
             if (curSelPa[0] != folder.ID) {
                 changeOption(folder.ID-curSelPa[0]);
             }
+			if(FlxG.mouse.justPressed)goOptions();
         }
     });
 }
@@ -113,4 +85,27 @@ function destroy(){
 	if (FlxG.cameras.list.contains(camPause)) FlxG.cameras.remove(camPause);
 	FlxG.mouse.visible = false;
 }
+
+function goOptions(){
+    switch (optionArray[menu][i.ID]){
+		case "resume song": close();
+		case "restart song": FlxG.resetState();
+		case "settings": new FlxTimer().start(0.01, ()-> menu=optionButtons[1][0].alpha=optionButtons[1][1].alpha=1);
+		curSelPa[1]=0;
+		case "shut down":openSubState(new ModSubState("unofficial/shut-down"));
+		case "log off":PlayState.deathCounter = 0;
+		PlayState.seenCutscene = false;
+		if (PlayState.chartingMode && Charter.undos.unsaved) PlayState.instance.saveWarn(false);
+		else if(PlayState.isStoryMode) FlxG.switchState(new ModState("DesktopState"));
+		else FlxG.switchState(new FreeplayState());
+		case "Change binds": openSubState(new KeybindsOptions());
+		case "Change options": FlxG.switchState(new OptionsMenu((_) -> FlxG.switchState(new PlayState())));
+	}
+}
 function changeOption(p) curSelPa[menu] = FlxMath.wrap(curSelPa[menu] + p, 0, optionArray[menu].length-1);
+
+
+function actuallyOverlaps(sprite:FlxBasic, camera:FlxCamera) {
+	var posthing = FlxG.mouse.getWorldPosition(camera);
+	return FlxMath.inBounds(posthing.x, sprite.x, sprite.x + sprite.width) && FlxMath.inBounds(posthing.y, sprite.y, sprite.y + sprite.height);
+}
