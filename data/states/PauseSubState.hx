@@ -1,33 +1,40 @@
 import Sys;
+import flixel.math.FlxPoint;
 import funkin.options.OptionsMenu;
 import funkin.editors.charter.Charter;
+import flixel.group.FlxTypedSpriteGroup;
 import funkin.options.keybinds.KeybindsOptions;
 import funkin.backend.utils.FunkinParentDisabler;
 
 var optionArray = [["resume song","restart song","settings","shut down","log off"],
-["Change binds","Change options"]];
+	["Change binds","Change options"]];
 var curSelPa = [0,0];
 var menu = 0;
 var optionButtons = [[],[]];
-var pauseMusic = FlxG.sound.load(Paths.music('breakfast'), 0, true);
+var pauseMusic = FlxG.sound.load(Paths.music('tstpwyptg'), 0, true);
 var bit = new CustomShader("8bitcolor");
-var camPause = new FlxCamera();
+var camPause:FlxCamera;
+
+var testt = new FlxTypedSpriteGroup<FlxSprite>();
+var oldMousePos:FlxPoint = FlxPoint.get();
+var curMousePos:FlxPoint = FlxPoint.get();
 function postCreate(){
+	camera = camPause = new FlxCamera();
+	camPause.bgColor = 0x00000000;
+	FlxG.cameras.add(camPause, false);
 	FlxG.mouse.visible = true;
 	add(parentDisabler = new FunkinParentDisabler());
 
-	camPause.bgColor = 0x00000000;
-	FlxG.cameras.add(camPause, false);
-    
 	pauseMusic.play(false, FlxG.random.int(0, Std.int(pauseMusic.length / 2)));
 
-	add(startMenu = new FlxSprite(0, 305).loadGraphic(Paths.image("menus/windowsUi/start menu")));
+	add(startMenu = new FlxSprite(0, 305).loadGraphic(Paths.image("menus/windowsUi/pause/start menu")));
 	for (i in 0...optionArray[0].length) {
 		var button = new FlxSprite(25, (723 - startMenu.height) + (34 * i) + (i > 1 ? 120 : 0)+ if(i > 2) 115);
-		button.frames = Paths.getSparrowAtlas("menus/windowsUi/win98buttons");
+		button.frames = Paths.getSparrowAtlas("menus/windowsUi/pause/"+optionArray[0][i]);
 		button.animation.addByPrefix("unselect", optionArray[0][i] + " unselect");
 		button.animation.addByPrefix("select", optionArray[0][i] + " select");
 		button.ID = i;
+		testt.add(button);
 		add(button);
 		button.animation.play("unselect");
 		optionButtons[0].push(button);
@@ -35,7 +42,7 @@ function postCreate(){
 
 	for (i in 0...optionArray[1].length) {
 		var sub_button = new FlxSprite(194, (498) + (25 * i));
-		sub_button.frames = Paths.getSparrowAtlas("menus/windowsUi/win98buttons");
+		sub_button.frames = Paths.getSparrowAtlas("menus/windowsUi/pause/"+optionArray[1][i]);
 		sub_button.animation.addByPrefix("unselect", optionArray[1][i] + " unselect");
 		sub_button.animation.addByPrefix("select", optionArray[1][i] + " select");
 		sub_button.ID = i;
@@ -43,10 +50,11 @@ function postCreate(){
 		sub_button.animation.play("unselect");
 		optionButtons[1].push(sub_button);
 	}
-	cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
 	if (FlxG.save.data.colour){FlxG.camera.addShader(bit);
 		PlayState.instance.camHUD.addShader(bit);
 		bit.enablethisbitch = 1.;}
+		
+	FlxG.mouse.getScreenPosition(camPause, oldMousePos);
 }
 function update(elapsed:Float) {
 	if (pauseMusic.volume < .5) pauseMusic.volume += elapsed * .01;
@@ -79,11 +87,30 @@ function update(elapsed:Float) {
 		FlxG.sound.play(Paths.sound('scrollFunny'), 0.6);
 	}
 }
+
+function postUpdate(elapsed:Float) {
+	if(menu==1)return;
+	
+	FlxG.mouse.getScreenPosition(camPause, curMousePos);
+	if (curMousePos.x != oldMousePos.x || curMousePos.y != oldMousePos.y) {
+		oldMousePos.set(curMousePos.x, curMousePos.y);
+		curSelPa[0] = -1;
+		changeOption(Std.int(curMousePos.y / 39)+1);
+	}
+
+	testt.forEach(function (folder) {
+        if (FlxG.mouse.overlaps(folder)/*&&FlxG.mouse.justPressed*/) {
+            if (curSelPa[0] != folder.ID) {
+                changeOption(folder.ID-curSelPa[0]);
+            }
+        }
+    });
+}
 function destroy(){
 	PlayState.instance.camHUD.removeShader(bit);
     FlxG.camera.removeShader(bit);
     FlxG.sound.destroySound(pauseMusic);
-	FlxG.cameras.remove(camPause);
+	if (FlxG.cameras.list.contains(camPause)) FlxG.cameras.remove(camPause);
 	FlxG.mouse.visible = false;
 }
 function changeOption(p) curSelPa[menu] = FlxMath.wrap(curSelPa[menu] + p, 0, optionArray[menu].length-1);
