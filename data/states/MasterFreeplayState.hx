@@ -1,78 +1,47 @@
-var image,vimage,intendedColor,extraImage,classicImage;
-static var curSelectedMaster:Int = 0;
-var cooltext = new FlxText(0,125,0).setFormat(Paths.font("vcr.ttf"), 96, FlxColor.WHITE);
-var cameraWhat = new FlxCamera();
-var cameraText = new FlxCamera();
-var loBg = new FlxSprite(0, 0).makeSolid(433, 999, 0xFF000000);
-var loBgt = new FlxSprite(0, 0).makeSolid(866, 999, 0xFF000000);
+static var curSelMaster = 0;
+var cooltext = new FlxText(0,125).setFormat(Paths.font("vcr.ttf"), 96);
+var loBg = new FlxSprite().makeSolid(433,720,0xFF000000);
+var loBgt = new FlxSprite().makeSolid(866,720,0xFF000000);
 var time:Float = 0;
 var chrom = new CustomShader("chromatic aberration");
-var shit = [["MAIN","CLASSIC","EXTRAS"],[0xFF8C81D9,0xFFC63C3f,0xFFDCF5F4]];
+var shit = [["MAIN","CLASSIC","EXTRAS"],[0xFF8C81D9,0xFFC63C3f,0xFFDCF5F4],[[866,433],[866,0],[0,-430]]];
 function create() {
-	cameraText.bgColor = 0;
-	FlxG.cameras.reset(cameraWhat);
-	FlxG.cameras.add(cameraText);
-	FlxCamera.defaultCameras = [cameraWhat];
-	if (FlxG.save.data.crt) FlxG.camera.addShader(crt = new CustomShader("fake CRT"));
-	if (FlxG.save.data.chrom) cameraText.addShader(chrom);
+	if (FlxG.save.data.crt)FlxG.camera.addShader(crt = new CustomShader("fake CRT"));
+	if (FlxG.save.data.chrom)FlxG.camera.addShader(chrom);
+	
+	add(bg = CoolUtil.loadAnimatedGraphic(new FlxSprite(320,178.5),Paths.image('menus/freeplay/mainbgAnimate'))).scale.set(2,2);
+	add(ground = new FlxSprite(0,522).loadGraphic(Paths.image('menus/freeplay/freeplay select/ground')));
 
-	add(bg = CoolUtil.loadAnimatedGraphic(new FlxSprite(320,178.5), Paths.image('menus/freeplay/mainbgAnimate'))).scale.set(2,2);
+	for(i in [loBg,loBgt]) add(i).alpha = 0.5;
 
-	add(vimage = new FlxSprite(0,540).loadGraphic(Paths.image('menus/freeplay/freeplay select/ground'))).camera = cameraText;
-
-	for(i in [loBg,loBgt]){
-		i.alpha = 0.5;
-		add(i).camera = cameraText;
-	}
-
-	add(image = new FlxSprite(37,80).loadGraphic(Paths.image('menus/freeplay/freeplay select/ron'))).camera = cameraText;
-
+	add(ro = new FlxSprite(37,80).loadGraphic(Paths.image('menus/freeplay/freeplay select/ron')));
 	add(classicImage = new FlxSprite(370,320).loadGraphic(Paths.image('menus/freeplay/freeplay select/evilron'))).scale.set(1.3,1.3);
-	classicImage.camera = cameraText;
-
-	add(extraImage = new FlxSprite(882).loadGraphic(Paths.image('menus/freeplay/freeplay select/doyne'))).camera = cameraText;
+	add(extraImage = new FlxSprite(882,0).loadGraphic(Paths.image('menus/freeplay/freeplay select/doyne')));
+	add(cooltext);
 	changeSelection(0);
-
-	add(cooltext).camera = cameraText;
 }
-function update(elapsed:Float) {
-	time += elapsed;
-    vimage.color = bg.color;
+function update(elapsed:Float) {time += elapsed;
+    ground.color = bg.color;
 	chrom.rOffset = chromeOffset*Math.sin(time);
 	chrom.bOffset = -chromeOffset*Math.sin(time);
-    cooltext.y += Math.sin(time*4)/2;
-	cooltext.text = shit[0][curSelectedMaster];
+    cooltext.y += Math.sin(time*4)/2;//MAKE_IT_SO_THIS_DOESN'T_OFFSET_OVER_TIME_LATER.
+	cooltext.text = shit[0][curSelMaster];
 	cooltext.screenCenter(FlxAxes.X);
-	if (controls.RIGHT_P||controls.LEFT_P){
-		changeSelection(controls.RIGHT_P ? 1 : -1);
+	if (controls.LEFT_P||controls.RIGHT_P){
+		changeSelection(controls.LEFT_P ? -1:1);
 		CoolUtil.playMenuSFX(0, 0.7);
 	}
 	if(controls.ACCEPT){
+		CoolUtil.playMenuSFX(1);
 		FlxG.switchState(new FreeplayState());
-		FlxG.save.data.freeplaything = curSelectedMaster;
 	}
 	if(controls.BACK) FlxG.switchState(new MainMenuState());
 }
 function changeSelection(p) {
-	curSelectedMaster = FlxMath.wrap(curSelectedMaster + p, 0, 2);
-	for(i in [image,classicImage,extraImage]){
-		FlxTween.globalManager.cancelTweensOf(i);
-		i.color = FlxColor.GRAY;
-	}
-
-	var newColor = shit[1][curSelectedMaster];
-	switch (curSelectedMaster) {
-		case 0: loBgt.x = 866; loBg.x = 433;
-		image.color = FlxColor.WHITE;
-		case 1: loBgt.x = 866; loBg.x = 0;
-		newColor = 0xFFC63C3f;
-		classicImage.color = FlxColor.WHITE;
-		case 2: loBgt.x = 0; loBg.x = 433;
-		newColor = 0xFFDCF5F4;
-		extraImage.color = FlxColor.WHITE;
-	}
-	if(newColor != intendedColor) {
-		intendedColor = newColor;
-		FlxTween.color(bg, 1, bg.color, intendedColor);
-	}
+	FlxG.save.data.freeplaything = curSelMaster = FlxMath.wrap(curSelMaster + p, 0, 2);
+	for(i in [ro,classicImage,extraImage]){FlxTween.cancelTweensOf(i); i.color = FlxColor.GRAY;}
+	FlxTween.cancelTweensOf(bg,'color');
+	[ro,classicImage,extraImage][curSelMaster].color=FlxColor.WHITE;
+	for(i in 0...2) [loBgt,loBg][i].x=shit[2][curSelMaster][i];
+	if(shit[1][curSelMaster] != bg.color) FlxTween.color(bg,1,bg.color,shit[1][curSelMaster]);
 }
