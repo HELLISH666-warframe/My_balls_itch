@@ -1,8 +1,8 @@
 <!DOCTYPE codename-engine-character>
-<character x="600" y="750" sprite="newcharstest/ronPissed" camx="-700" camy="-500" icon="ronslightly" color="#AA8900">
-	<anim name="singRIGHT" anim="right" x="693" y="591" fps="24" loop="false"/>
-	<anim name="idle" anim="idle" x="705" y="590" fps="24" loop="false"/>
-	<anim name="singLEFT" anim="left" x="722" y="583" fps="24" loop="false"/>
-	<anim name="singDOWN" anim="down" x="714" y="594" fps="24" loop="false"/>
-	<anim name="singUP" anim="up" x="701" y="597" fps="24" loop="false"/>
+<character x="-40" y="265" sprite="pissedRon" icon="ronslightly" color="#AA8900" camy="100">
+	<anim name="idle" anim="ronIdle" x="0" y="0" fps="24" loop="false"/>
+	<anim name="singLEFT" anim="ronLeft" x="199" y="-23" fps="24" loop="false"/>
+	<anim name="singDOWN" anim="ronDown" x="16" y="-165" fps="24" loop="false"/>
+	<anim name="singRIGHT" anim="ronRight" x="-25" y="-7" fps="24" loop="false"/>
+	<anim name="singUP" anim="ronUp" x="139" y="21" fps="24" loop="false"/>
 </character>
