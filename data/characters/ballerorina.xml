@@ -1,10 +1,1 @@
-<!DOCTYPE codename-engine-character>
-<character sprite="ballerorina" scale="0.5" camx="-175" camy="140" icon="ballerorina" color="#FF1010">
-	<anim name="idle" anim="ballerorina idle" x="0" y="0" fps="12" loop="true"/>
-	<anim name="singLEFT" anim="ballerorina left" x="0" y="0" fps="8" loop="false"/>
-	<anim name="singDOWN" anim="ballerorina down" x="0" y="0" fps="12" loop="false"/>
-	<anim name="singUP" anim="ballerorina up" x="0" y="0" fps="12" loop="false"/>
-	<anim name="singRIGHT" anim="ballerorina right" x="0" y="0" fps="12" loop="false"/>
-	<anim name="bye" anim="ballerorina baller" x="0" y="0" fps="12" loop="false"/>
-	<anim name="hey" anim="ballerorina this is a certified" x="0" y="0" fps="8" loop="false"/>
-</character>
+<!DOCTYPE codename-engine-character><character sprite="ballerorina" scale="0.5" camx="-175" camy="140" icon="ballerorina" color="#FF1010"><anim name="idle" anim="ballerorina idle" fps="12" loop="true"/><anim name="singLEFT" anim="ballerorina left" fps="8"/><anim name="singDOWN" anim="ballerorina down" fps="12"/><anim name="singUP" anim="ballerorina up" fps="12"/><anim name="singRIGHT" anim="ballerorina right" fps="12"/><anim name="bye" anim="ballerorina baller" fps="12"/><anim name="hey" anim="ballerorina this is a certified" fps="8"/></character>

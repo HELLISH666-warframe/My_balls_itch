@@ -31,6 +31,11 @@ function postCreate() {
     
         healthBarBG1.color = boyfriend.iconColor; healthBarBG2.color = dad.iconColor;
         for(i in [healthBarBG1,healthBarBG2]) insert(0,i).cameras = [camHUD];
+    }else{
+        if(StringTools.contains(boyfriend.curCharacter.toLowerCase(), "bf")) {
+            iconP1.setIcon('oldbf');
+            //0x01D8FF
+        }
     }
 }
 function onEvent(_) {

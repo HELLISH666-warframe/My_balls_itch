@@ -16,19 +16,20 @@ function postCreate() {
 	bg.updateHitbox();
 	bg.alpha = 0.33;
 	add(bg).scrollFactor.set(0.1,0.1);
-	titleAlphabet.visible = disclaimer.visible = false;
 
 	add(screen = new FlxSprite().loadGraphic(Paths.image("menus/warning/lol"))).angle = -3;
 		
 	FlxTween.tween(screen, {y: screen.y + 20}, 1, {ease: FlxEase.circInOut, type: FlxTween.PINGPONG});
 	FlxTween.tween(screen, {angle: 3}, 2, {ease: FlxEase.backInOut, type: FlxTween.PINGPONG});
 }
+var transitioning=false;
 function update(elapsed:Float){glitch.data.iTime.value = vhs.iTime += elapsed;
 	if (mmtw.volume < .5) mmtw.volume += elapsed * .01;
-	if (controls.ACCEPT){
+	if (controls.ACCEPT&&!transitioning){
+		transitioning=true;
 		mmtw.destroy();
 		FlxG.sound.play(Paths.sound('resumeSong'));
-		FlxTween.tween(FlxG.camera, {zoom: 0.5, angle: 45}, 0.9, {ease: FlxEase.quadIn});
-		new FlxTimer().start(0.8, ()-> FlxG.switchState(new TitleState()));
+		FlxTween.tween(FlxG.camera, {zoom: 0.5, angle: 45}, 0.5, {ease: FlxEase.quadIn});
+		new FlxTimer().start(0.5, ()-> FlxG.switchState(new TitleState()));
 	}
 }

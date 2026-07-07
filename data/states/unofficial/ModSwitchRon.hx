@@ -4,7 +4,7 @@ import flixel.group.FlxTypedSpriteGroup;
 import flixel.util.FlxSort;
 
 var mods = CoolUtil.sortAlphabetically(ModsFolder.getModsList(), true);
-var curSelected:Int = 0;
+var curSelMS:Int = 0;
 
 var subCam:FlxCamera;
 
@@ -75,10 +75,10 @@ function update(elapsed:Float) {
 
 	folders.forEach(function (folder) {
         if (FlxG.mouse.overlaps(folder)) {
-            if (curSelected != folder.ID) {
-                changeSelection(folder.ID-curSelected);
+            if (curSelMS != folder.ID) {
+                changeSelection(folder.ID-curSelMS);
             }
-            if (FlxG.mouse.justPressed){ModsFolder.switchMod(mods[curSelected]);
+            if (FlxG.mouse.justPressed){ModsFolder.switchMod(mods[curSelMS]);
 		    close();
 			}
         }
@@ -86,8 +86,9 @@ function update(elapsed:Float) {
 }
 
 function changeSelection(change:Int, force:Bool = false) {
+	force??=false;
 	if (change == 0 && !force) return;
-	curSelected = FlxMath.wrap(curSelected + change, 0, mods.length-1);
+	curSelMS = FlxMath.wrap(curSelMS + change, 0, mods.length-1);
 }
 
 function scrollCam(change:Int, force:Bool = false) {
