@@ -1,5 +1,6 @@
 function postCreate() {
     flatgrass.updateHitbox();
 	farmHouse.updateHitbox();
-    cornBag.loadGraphic(Paths.image("stages/farm/"+(FlxG.random.int(0, 1000) == 0 ? 'popeye' : 'cornbag')));
+    var bagType = FlxG.random.int(0, 1000) == 0 ? 'popeye' : 'cornbag';
+    cornBag.loadGraphic(Paths.image("stages/farm/"+bagType));
 }

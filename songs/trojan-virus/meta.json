@@ -2,9 +2,9 @@
 	"displayName": "Trojan-virus",
 	"difficulties": ["hard"],
 	"bpm": 180,
-	"portrait":"trojan-virus",
 	"icon": "ronpower",
 	"color": "#00A030",
 	"coopAllowed": true,
-	"opponentModeAllowed": true
+	"opponentModeAllowed": true,
+	"customValues": {"noteSkins":["ron","default"]}
 }

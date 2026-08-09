@@ -1,0 +1,10 @@
+{
+	"displayName": "Wasted",
+	"difficulties": ["hard","V3"],
+	"bpm": 130,
+	"icon": "ronslightly",
+	"color": "#FFA500",
+	"coopAllowed": true,
+	"opponentModeAllowed": true,
+	"customValues": {"noteSkins": ["ron","default"]}
+}

@@ -2,9 +2,10 @@
 	"displayName": "Ron-dsides",
 	"difficulties": ["hard"],
 	"bpm": 181,
-	"portrait":"ron-dsides",
+	"needsVoices": false,
 	"icon": "ron-dsides",
 	"color": "#9933CC",
 	"coopAllowed": true,
-	"opponentModeAllowed": true
+	"opponentModeAllowed": true,
+	"customValues": {"noteSkins":["conall","default"]}
 }

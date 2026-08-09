@@ -9,6 +9,7 @@ function postCreate() {
 	satan.screenCenter(FlxAxes.XY);
 	satan.x -= 60;
 	add(satan);
+	boyfriend.color = gf.color = 0xFFBD7F77;
 }
 function stepHit(curStep:Int) {
 	Estatic.alpha = (((2-health)/3)+0.2);

@@ -9,6 +9,7 @@ function resetTrail() {
 }
 function postCreate() {
 	iconP1.setIcon('oldbf');
+	boyfriend.color = gf.color = 0xFFBD7F77;
 }
 
 function stepHit(curStep:Int) {

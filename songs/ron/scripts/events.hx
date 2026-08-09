@@ -12,7 +12,7 @@ function stepHit(curStep){
 		for(s in [playerStrums,cpuStrums])
 		if (curStep % 8 == 0){
 			for (i in 0...4){
-			FlxTween.globalManager.completeTweensOf(s);
+			FlxTween.cancelTweensOf(s,['y']);
 			s.members[i].y+=20;
 			FlxTween.tween(s.members[i], {y: 50}, 0.65, {ease: FlxEase.backOut});}
 		    }

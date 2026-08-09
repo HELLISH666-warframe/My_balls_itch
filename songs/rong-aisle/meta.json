@@ -2,9 +2,9 @@
 	"displayName": "Rong-aisle",
 	"difficulties": ["hard"],
 	"bpm": 160,
-	"portrait":"rong-aisle",
 	"icon": "rondvd",
 	"color": "#00FF40",
 	"coopAllowed": true,
-	"opponentModeAllowed": true
+	"opponentModeAllowed": true,
+	"customValues": {"noteSkins":["ron","default"]}
 }

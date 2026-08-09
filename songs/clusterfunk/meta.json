@@ -1,10 +1,10 @@
 {
-	"displayName": "cluster-funk",
+	"displayName": "Cluster-funk",
 	"difficulties": ["hard"],
 	"bpm": 140.0,
-	"portrait":"clusterfunk",
 	"icon": "gdron",
 	"color": "#FF00FF",
     "coopAllowed": true,
-    "opponentModeAllowed": true
+    "opponentModeAllowed": true,
+	"customValues": {"noteSkins":["ron","default"]}
 }

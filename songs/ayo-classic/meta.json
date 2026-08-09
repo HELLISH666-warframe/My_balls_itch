@@ -2,9 +2,9 @@
 	"displayName": "Ayo-classic",
 	"difficulties": ["hard"],
 	"bpm": 190.0,
-	"portrait":"ayo-classic",
 	"icon": "ronmad-classic",
 	"color": "#4078C0",
     "coopAllowed": true,
-    "opponentModeAllowed": true
+    "opponentModeAllowed": true,
+	"customValues": {"noteSkins":["ron","default"]}
 }

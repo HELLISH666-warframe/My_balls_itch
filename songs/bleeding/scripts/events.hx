@@ -15,6 +15,7 @@ function postCreate(){
 	rain.raindropLength = 0.1;rain.opacity = 0.25;
 	}
     for (i in cpuStrums.members) i.noteAngle=0;
+    boyfriend.color = gf.color = 0xFFBD7F77;
 }
 function update(elapsed:Float){time += elapsed;
     for(i in [glitch,bleed,rain,vhs])
@@ -27,7 +28,7 @@ function beatHit(curBeat){
 		for (i in 0...4)FlxTween.tween(cpuStrums.members[i],{x: cpuStrums.members[i].x - 1250,angle: cpuStrums.members[i].angle + 359},1,{ease: FlxEase.linear});
         case 96:
         Estatic.alpha=1;
-        FlxTween.tween(Estatic,{"scale.x":1.2,"scale.y":1.2},Conductor.crochet / 1000,{ease: FlxEase.quadInOut,type: FlxTween.PINGPONG});
+        FlxTween.tween(Estatic.scale,{x:1.2,y:1.2},Conductor.crochet / 1000,{ease: FlxEase.quadInOut,type: FlxTween.PINGPONG});
 		if (FlxG.save.data.glitch){camGame.addShader(glitch);glitch.on = 1.;}
 		if (FlxG.save.data.vhs)camHUD.addShader(vhs);
 		if (FlxG.save.data.chrom){camGame.addShader(chrom);

@@ -118,12 +118,13 @@ function stepHit(curStep) {
 		snowemitter.y = 9999;
     }
     switch (curStep) {
-		case 128: if (FlxG.save.data.rain) {
+		case 128:if (FlxG.save.data.rain) {
 		FlxG.camera.addShader(rain);
 		rain.zoom=40;
 		rain.raindropLength=0.1;
 		rain.opacity=0.25;
 		}
+		gf.color = boyfriend.color = 0xFFBD7F77;
 		evilTrail.color = FlxColor.RED;
 		insert(members.indexOf(dad)-1, evilTrail);
 
@@ -228,6 +229,7 @@ function stepHit(curStep) {
 		defaultCamZoom -= 0.1;
 		dad.y += 9400;
 		boyfriend.y = dad.y+650;
+		gf.color = boyfriend.color = 0xFFFFFFFF;
 		case 1152: boyfriend.y = dad.y+650;
 		//healthBar.setGraphicSize(800,Std.int(healthBar.height));
 		//healthBar.updateHitbox();

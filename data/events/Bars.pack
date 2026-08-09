@@ -23,6 +23,7 @@ function onEvent(_) {
 			(_.event.params[2] == "Out" ? FlxEase.circOut : FlxEase.circInOut)
 		);
 
+		for(i in [bar1,bar2])FlxTween.cancelTweensOf(i,['y']);
 		FlxTween.tween(bar1, {y: -560 + (10 * Std.int(sizeNeeded))}, Conductor.crochet / 1000 * timeNeeded, {ease: easingType});
 		FlxTween.tween(bar2, {y: 720 + -(10 * Std.int(sizeNeeded))}, Conductor.crochet / 1000 * timeNeeded, {ease: easingType});
 	}

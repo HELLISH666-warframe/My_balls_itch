@@ -1,1 +1,10 @@
-<!DOCTYPE codename-engine-character><character x="20" icon="ron-classic" camy="250" holdTime="4" color="#FBE900" sprite="shuttle ron"><anim name="idle" anim="shuttle ron idle" x="10" y="-190" fps="14"/><anim name="singLEFT" anim="shuttle ron left" x="10" y="-190"/><anim name="singDOWN" anim="shuttle ron down" x="-10" y="-190"/><anim name="singUP" anim="shuttle ron up" x="10" y="-170"/><anim name="singRIGHT" anim="shuttle ron right" x="-10" y="-195"/></character>
+<!DOCTYPE codename-engine-character>
+<character x="20" isPlayer="false" icon="ron-classic" camy="250" flipX="false" holdTime="4" color="#FBE900"  sprite="shuttle ron"> <!-- CONVERTED VIA psychjsontocodenamexml.py by Burgerballs -->
+
+   <anim name="singDOWN" anim="shuttle ron down" loop="false" x="-10" y="-190"/>
+   <anim name="idle" anim="shuttle ron idle" fps="14" loop="false" x="10" y="-190"/>
+   <anim name="singRIGHT" anim="shuttle ron right" loop="false" x="-10" y="-195"/>
+   <anim name="singLEFT" anim="shuttle ron left" loop="false" x="10" y="-190"/>
+   <anim name="singUP" anim="shuttle ron up" loop="false" x="10" y="-170"/>
+
+</character>

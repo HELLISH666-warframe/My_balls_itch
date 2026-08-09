@@ -1,20 +1,28 @@
-if (!Assets.exists(Paths.file("songs/" + curSong + "/credits.txt"))) return;
 /*
 | - Reformated by @ItsLJcool - |
 */
 //and_messed_up_by_me_ear
-import flixel.text.FlxTextBorderStyle as BS;
+import flixel.text.FlxTextBorderStyle;
 
+// if you want to have this toggled in the `meta.json` file, uncomment this line
+// showCredits = (PlayState?.instance?.SONG?.meta?.customValues?.showCredits ?? showCredits);
+
+var curSong:String = PlayState.SONG.meta.name;
+public var showCredits:Bool =Assets.exists(Paths.file("songs/" + curSong + "/credits.txt"));
 var credits:FlxText;
 var creditBG:FlxSprite;
 function postCreate() {
 // init shit bruh
-credits = new FlxText(0, 0, 0, Assets.getText(Paths.file("songs/" + curSong + "/credits.txt")));
-credits.setFormat(Paths.font("w95.otf"), 24, FlxColor.WHITE, 'center', BS.OUTLINE, FlxColor.BLACK);
+var creditPath = Paths.file("songs/" + curSong + "/credits.txt");
+var creditText = "ItsLJcool stole the credits";
+if (Assets.exists(creditPath)) creditText = Assets.getText(creditPath);
+
+credits = new FlxText(0, 0, 0, creditText);
+credits.setFormat(Paths.font("w95.otf"), 24, FlxColor.WHITE, "center", FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 credits.scrollFactor.set();
 credits.screenCenter();
 
-add(creditBG = new FlxSprite().makeSolid(600, FlxG.height + 10, FlxColor.BLACK)).screenCenter();
+add(creditBG = new FlxSprite().makeGraphic(600, FlxG.height + 10, FlxColor.BLACK)).screenCenter();
 creditBG.scrollFactor.set();
 creditBG.alpha = 0.0001; // renders but doesn't show. if it's 0, then it doesn't render.
 
@@ -22,6 +30,7 @@ creditBG.camera = credits.camera = camHUD;
 }
 
 function onSongStart() {
+    if (!showCredits) return;
     add(credits);
     // ??
     var targety:Int = 0;

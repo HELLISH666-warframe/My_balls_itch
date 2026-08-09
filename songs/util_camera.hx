@@ -8,10 +8,11 @@ var rs = 0.005;
 function postCreate() {
     add({cameraFollow.setPosition(camFollow.x, camFollow.y); cameraFollow;}).visible = false;
     FlxG.camera.follow(cameraFollow);
+        camSpeed=stage.stageXML.get('cameraSpeed')!=null?stage.stageXML.get('cameraSpeed'):1;
 }
 
 var t = 0;
-var speed = 0.0;
+public var camSpeed = 8;
 var xoffset = 0.0;
 var yoffset = 0.0;
 var angleoffset = 0.0;
@@ -19,6 +20,7 @@ var angleoffset = 0.0;
 var rotateTarget = 0;
 function updatePost60(elapsed) {
     camHUD.followLerp = FlxG.camera.followLerp * 2;
+    //FlxG.camera.followLerp=0.04*camSpeed;
 
     //var animName = "";
     for (i in strumLines.members[curCameraTarget].characters) {

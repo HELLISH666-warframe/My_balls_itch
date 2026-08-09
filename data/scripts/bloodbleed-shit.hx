@@ -1,5 +1,5 @@
-import openfl.display.BlendMode;
 import flixel.text.FlxTextBorderStyle;
+import openfl.display.BlendMode;
 importScript("data/scripts/healthdrainers");
 var time:Float = 0;
 public var windowmovebath:Bool = false;
@@ -32,7 +32,7 @@ public var chromeOffset2 = (((2 - health)*Math.sin(curStep/10))*FlxG.save.data.c
 public var SCREWYOU:Bool = false;
 var unfair = new FlxText(400, 55, FlxG.width - 800, "UNFORGIVING INPUT ENABLED!", 32);
 var unfairSine:Float = 0;
-override function update(elapsed:Float){time += elapsed;
+function update(elapsed:Float){time += elapsed;
 	chrom.data.rOffset.value = [chromeOffset*Math.sin(time)];
 	chrom.data.bOffset.value = [-chromeOffset*Math.sin(time)];
 	var currentBeat:Float = (Conductor.songPosition / 1000)*(Conductor.bpm/60);
@@ -65,14 +65,14 @@ function postCreate()
 if (FlxG.save.data.chrom){FlxG.camera.addShader(chrom);camHUD.addShader(chrom);}
 	add(fx);
 	add(Estatic);
-	FlxTween.tween(Estatic, {"scale.x":1.2,"scale.y":1.2}, Conductor.crochet / 1000, {ease: FlxEase.quadInOut,type: FlxTween.PINGPONG});
+	FlxTween.tween(Estatic.scale, {x:1.2,y:1.2}, Conductor.crochet / 1000, {ease: FlxEase.quadInOut,type: FlxTween.PINGPONG});
 }
 	if (dad.curCharacter == 'hellron')
 GameOverSubstate.script = 'data/scripts/gameovers/slap';
 if (curStage == 'hell')Estatic.alpha = 1;
 	unfair.setFormat(Paths.font("w95.otf"), 32, FlxColor.WHITE, 'center', FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 	unfair.borderSize = 1.25;
-	add(unfair).cameras = [camHUD];
+	add(unfair).camera = camHUD;
 	unfair.screenCenter(FlxAxes.X);
 	unfair.y = scoreTxt.y - 100;
 	unfair.visible=SCREWYOU;

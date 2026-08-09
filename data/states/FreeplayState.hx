@@ -11,12 +11,11 @@ var grey = new CustomShader("grayscale");
 var vhs = new CustomShader("vhs");
 
 songs = [];
-songRealList = [["ron",/*"wasted",*/"ayo","bloodshed","trojan-virus"],
+songRealList = [["ron","wasted","ayo","bloodshed","trojan-virus"],
 	["ron-classic","wasted-classic","ayo-classic","bloodshed-classic","trojan-virus-classic","bleeding-classic"],
-	["Tutorial","bloodbath","official-debate","gron","difficult-powers","bijuu",'trouble',"holy-shit-dave-fnf","slammed","ron-dsides","lights-down-remix","pretty-wacky",'triad',"certified-champion","rong-aisle","bloodshed-legacy-redux","clusterfunk","awesome-ron","oh-my-god-hes-ballin","fardventure","bleeding"]];
-modelist = ["MAIN","CLASSIC","EXTRAS"];
+	["Tutorial","bloodbath","official-debate","gron","difficult-powers","bijuu","trouble","holy-shit-dave-fnf","slammed","ron-dsides","lights-down-remix","pretty-wacky","triad","certified-champion","rong-aisle","bloodshed-legacy-redux","clusterfunk","awesome-ron","oh-my-god-hes-ballin","fardventure","bleeding","ron-bside","wasted-bside"]];
 
-for(s in songRealList[FlxG.save.data.freeplaything]) songs.push(Chart.loadChartMeta(s, "hard", true));
+for(s in songRealList[modSave.freeplaything]) songs.push(Chart.loadChartMeta(s, "hard", true));
 var camText = new FlxCamera();
 camText.bgColor = null;
 var portrait = new FlxSprite();
@@ -24,10 +23,10 @@ var portraitOverlay = new FlxSprite();
 var preload = [];
 var grpSongs2 = new FlxTypedGroup();
 var iconArray2:Array<HealthIcon> = [];
-var modeText = new FlxText(0,0,0,modelist[FlxG.save.data.freeplaything]).setFormat(null,48,FlxColor.WHITE);
+var modeText = new FlxText(0,0,0,["MAIN","CLASSIC","EXTRAS"][modSave.freeplaything]).setFormat(null,48,FlxColor.WHITE);
 static var curSelectReal = [0,0,0];
 function postUpdate(elapsed:Float){time += elapsed;
-	if(controls.BACK)FlxG.switchState(new ModState('MasterFreeplayState'));
+	if(controls.BACK)FlxG.switchState(new ModState('ron/MasterFreeplayState'));
 	chrom.rOffset = chromeOffset*Math.sin(time);
 	chrom.bOffset = -chromeOffset*Math.sin(time);
 	vhs.data.iTime.value = glitch.data.iTime.value = [time];
@@ -51,7 +50,7 @@ function create(){
 		iconArray2.push(icon);
 	}
 	for (i in 0...iconArray2.length) remove(iconArray2[i]);
-	curSelected=curSelectReal[FlxG.save.data.freeplaything];
+	curSelected=curSelectReal[modSave.freeplaything];
 	insert(2,modeText);
 	insert(2,portrait).updateHitbox();
 }
@@ -61,7 +60,7 @@ function postCreate(){
 	for(i in iconArray) remove(i);
 
 	bg.frames = Paths.getSparrowAtlas('menus/freeplay/mainbgAnimate');
-	if(FlxG.save.data.freeplaything == 1){
+	if(modSave.freeplaything == 1){
 		bg.frames = Paths.getSparrowAtlas('menus/freeplay/classicbgAnimate');
 		FlxG.camera.addShader(vhs);
 	}
@@ -78,17 +77,17 @@ function postCreate(){
 	
 	for (i in 0...iconArray2.length) add(iconArray2[i]);
 	for (i in songs){
-		Assets.exists(Paths.image('menus/freeplay/portraits/' + i.portrait)) ? port=i.portrait : port="ron";
+		Assets.exists(Paths.image('menus/freeplay/portraits/' + i.name)) ? port=i.name : port="ron";
 		var graphic = FlxGraphic.fromAssetKey(Paths.image('menus/freeplay/portraits/' + port));
 		graphic.persist = true;
 		preload.push(graphic);
 	}
 	changeSelection(0, true);
-	if (FlxG.save.data.glitch)FlxG.camera.addShader(glitch);
-	if (FlxG.save.data.crt)FlxG.camera.addShader(crt = new CustomShader("fake CRT"));
-	if (FlxG.save.data.chrom)FlxG.camera.addShader(chrom);
+	if (modSave.glitch)FlxG.camera.addShader(glitch);
+	if (modSave.crt)FlxG.camera.addShader(crt = new CustomShader("fake CRT"));
+	if (modSave.chrom)FlxG.camera.addShader(chrom);
 	FlxG.camera.addShader(grey);camText.addShader(grey);
-	camText.addShader(fish = new CustomShader("fisheye"));
+	camText.addShader(fish = new CustomShader(?"fisheye-good":"fisheye"));
 	fish.MAX_POWER = 0.2;
 
 	var coolemitter = new FlxTypedEmitter(null,FlxG.height);
@@ -110,17 +109,17 @@ function postCreate(){
 	}
 }
 function shadering(REAL:Int,?string:String=""){
-	var curPort = songs[REAL].portrait;
+	var cursong = songs[REAL].displayName;
 	if(string=="hand"){
-		if(Assets.exists(Paths.image('menus/freeplay/portraits/'+curPort+'-over')))
-		portraitOverlay.loadGraphic(Paths.image('menus/freeplay/portraits/'+curPort+'-over'));
+		if(Assets.exists(Paths.image('menus/freeplay/portraits/'+cursong+'-over')))
+		portraitOverlay.loadGraphic(Paths.image('menus/freeplay/portraits/'+cursong+'-over'));
 		portraitOverlay.screenCenter();
-		Assets.exists(Paths.image('menus/freeplay/portraits/'+curPort+'-over')) ? portraitOverlay.visible = true : 
+		Assets.exists(Paths.image('menus/freeplay/portraits/'+cursong+'-over')) ? portraitOverlay.visible = true : 
 		portraitOverlay.visible = false;
 		return;
 	}
-    switch(songs[REAL].displayName)	{
-		case"gron":if(FlxG.save.data.grey)grey.enable=1;
+    switch(cursong)	{
+		case"gron":if(modSave.grey)grey.enable=1;
 		case"trojan-virus":glitch.on = 1.;
 		case"Bleeding":diffText.color=0xE00020;glitch.on = 1.;
 		default:grey.enable=0; glitch.on = 0;diffText.color=0xFFFFFFFF;
@@ -130,7 +129,7 @@ function onChangeSelection(event){
 	if (event.change == 0) event.playMenuSFX = false;
 	FlxTween.globalManager.completeTweensOf(portrait);
 	var val = event.value;
-	curSelectReal[FlxG.save.data.freeplaything]=val;
+	curSelectReal[modSave.freeplaything]=val;
 	for (i in grpSongs2){
 		i.targetY = i.ID - val;
 		i.targetY == 0 ? i.alpha = 1 : i.alpha = 0.6;

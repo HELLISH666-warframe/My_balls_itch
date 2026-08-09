@@ -2,9 +2,9 @@
 	"displayName": "Pretty-wacky",
 	"difficulties": ["hard"],
 	"bpm": 130,
-	"portrait":"pretty-wacky",
 	"icon": "douyhe",
 	"color": "#FFFFFF",
 	"coopAllowed": true,
-	"opponentModeAllowed": true
+	"opponentModeAllowed": true,
+	"customValues": {"noteSkins":["default","default"]}
 }

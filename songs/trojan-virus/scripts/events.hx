@@ -4,28 +4,25 @@ var vhs = new CustomShader("vhs");
 var time:Float = 0;
 var moveing:Bool = false;
 var rain = new CustomShader("rain");
-var defaultStrumX:Array<Float> = [[96,208,320,432],[736,848,960,1072]];
 
 function update(elapsed:Float){time += elapsed;
 	chrom.rOffset = chromeOffset*Math.sin(time);
 	chrom.bOffset = -chromeOffset*Math.sin(time);
 	for (i in [glitch,rain,vhs]) i.iTime=time;
-	var currentBeat:Float = (Conductor.songPosition / 1000)*(Conductor.bpm/60);
+	var currentBeat = (Conductor.songPosition / 1000)*(Conductor.bpm/60);
 	if (moveing){
-		for (i in 0...4) cpuStrums.members[i].x = defaultStrumX[0][i]+ 32 * Math.sin((currentBeat + i*0.25) * Math.PI);
-		for (i in 0...4) playerStrums.members[i].x = defaultStrumX[1][i]+ 32 * Math.sin((currentBeat + i*0.25) * Math.PI);
-	}
-	if (!moveing){
-		for (i in 0...4) cpuStrums.members[i].x = defaultStrumX[0][i];
-		for (i in 0...4) playerStrums.members[i].x = defaultStrumX[1][i];
+		for (i in 0...8) 
+			strumLineNotes[i].x = defaultStrumX[i]+ 32 * Math.sin((currentBeat + i*0.25) * Math.PI);
 	}
 }
 function postCreate() {
-if (FlxG.save.data.rain){FlxG.camera.addShader(rain);rain.zoom = 35;
+	if (FlxG.save.data.rain){FlxG.camera.addShader(rain);rain.zoom = 35;
 	rain.raindropLength = 0.075;rain.opacity = 0.2;
 	}
 	stage.getSprite("popup").alpha = 0.5;
     stage.getSprite("popupt").alpha = 0.7;
+	for (i in cpuStrums.members){strumLineNotes.push(i);}
+    for (i in playerStrums.members) {strumLineNotes.push(i);}
 }
 function stepHit(step){
 	switch (step){
@@ -46,6 +43,7 @@ function stepHit(step){
 		moveing = false;
 		glitch.on = 0.;
 		defaultCamZoom = 0.55;
+		for(i in 0...strumLineNotes.length) strumLineNotes[i].x=defaultStrumX[i];
 	case 912:
 		moveing = true;
 		glitch.on = 1.;
@@ -61,6 +59,7 @@ function stepHit(step){
 		moveing = false;
 		if (FlxG.save.data.glitch)FlxG.camera.removeShader(glitch);
 		FlxTween.tween(camHUD, {alpha: 0}, 2, {ease: FlxEase.circInOut});
+		for(i in 0...strumLineNotes.length) strumLineNotes[i].x=defaultStrumX[i];
 	case 1490:
 		defaultCamZoom = 1;
 	case 1552:

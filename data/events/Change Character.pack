@@ -31,11 +31,8 @@ function onEvent(_) {
 		stuff[1].characters[0] = char;
 
 		if (_.event.params[2] || _.event.params[2] == null) {
-			if (stuff[1].opponentSide) {
-				iconP2.setIcon(char.icon!=null?char.icon:char.curCharacter);
-			} else {
-				iconP1.setIcon(char.icon!=null?char.icon:char.curCharacter);
-			}
+			if (stuff[1].opponentSide) iconP2.setIcon(char.icon!=null?char.icon:char.curCharacter);
+			else iconP1.setIcon(char.icon!=null?char.icon:char.curCharacter);
 		}
 	}
 }________PACKSEP________{
@@ -44,19 +41,19 @@ function onEvent(_) {
 			"name": "Strumline",
 			"type": "StrumLine",
 			"defaultValue": 0
-		}, {
+		},{
 			"name": "To",
 			"type": "String",
 			"defaultValue": "dad"
-		}, {
+		},{
 			"name": "Change Icon",
 			"type": "Bool",
 			"defaultValue": true
-		}, {
+		},{
 			"name": "Offset (X,Y)",
 			"type": "String",
 			"defaultValue": "0,0"
-		}, {
+		},{
 			"name": "Keep Color",
 			"type": "Bool",
 			"defaultValue": true
