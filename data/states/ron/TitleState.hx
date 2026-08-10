@@ -16,7 +16,7 @@ function create() {
 
 	if(!initialized) new FlxTimer().start(1, ()-> {startIntro();});
 	else startIntro();//Reloading state wont cause errors.
-	if(modSave.chrom) FlxG.camera.addShader(chrom);
+	if(FlxG.save.data.chrom) FlxG.camera.addShader(chrom);
 	FlxG.camera.addShader(color);
 }
 

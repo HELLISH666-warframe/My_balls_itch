@@ -1,27 +1,26 @@
+import haxe.io.Path;
 allowGitaroo = false;
-public static var modSave;
-var rtxShader = new CustomShader('NVIDIA RTX Architecture');
-function new() {
-    FlxG.save.data.Vs_Ron_V3point1_save??={};
-    modSave=FlxG.save.data.Vs_Ron_V3point1_save;
-    modSave.glitch ??= true;
-    modSave.chrom ??= true;
-    modSave.chromeOffset ??= 0.5;
-    modSave.mosaic ??= true;
-    modSave.crt ??= true;
-    modSave.colour ??= true;
-    modSave.grey ??= true;
-    modSave.vhs ??= true;
-    modSave.rain ??= true;
-    modSave.rtx ??= false;
-    modSave.warning ??= true;
-    modSave.website ??= true;
-    modSave.TimeBar ??= "Disabled";
-    Flags.DISABLE_WARNING_SCREEN=!modSave.warning;
+function new() {   
+    FlxG.save.data.glitch ??= true;
+    FlxG.save.data.chrom ??= true;
+    FlxG.save.data.chromeOffset ??= 0.5;
+    FlxG.save.data.mosaic ??= true;
+    FlxG.save.data.crt ??= true;
+    FlxG.save.data.colour ??= true;
+    FlxG.save.data.grey ??= true;
+    FlxG.save.data.vhs ??= true;
+    FlxG.save.data.rain ??= true;
+    FlxG.save.data.rtx ??= false;
+    FlxG.save.data.warning ??= true;
+    FlxG.save.data.website ??= true;
+    FlxG.save.data.TimeBar ??= "Disabled";
+    for (i in Paths.getFolderContent('data/global')) importScript("data/global/"+Path.withoutExtension(i)); //import different global scripts for organization reasons
 }
 import funkin.backend.system.Flags;
-public static var chromeOffset = (modSave.chromeOffset/350);
+Flags.DISABLE_WARNING_SCREEN=!FlxG.save.data.warning;
+public static var chromeOffset = (FlxG.save.data.chromeOffset/350);
 
+var rtxShader = new CustomShader('NVIDIA RTX Architecture');
 public static function makeTheModGood(onOrNot:Bool) {
     if(onOrNot) FlxG.game.addShader(rtxShader);
     else FlxG.game.removeShader(rtxShader);
@@ -30,3 +29,10 @@ public static function makeTheModGood(onOrNot:Bool) {
 function preStateSwitch() if(FlxG.save.data.rtx)makeTheModGood(false);
 
 function postStateSwitch() if(FlxG.save.data.rtx)makeTheModGood(true);
+
+//Test
+function update() {
+    if (FlxG.keys.pressed.SHIFT && FlxG.keys.pressed.H)
+        FlxG.switchState(new ModState('ron/fp_test'));
+        //FlxG.switchState(new ModState('tco/credits_test',{"videoName": 'tco_credits',"canSkip":false}));
+}

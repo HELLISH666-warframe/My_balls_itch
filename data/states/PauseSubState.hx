@@ -30,7 +30,7 @@ function postCreate(){
 		optionButtons.push(button);
 	}
 	cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
-	if (modSave.colour){FlxG.camera.addShader(bit);
+	if (FlxG.save.data.colour){FlxG.camera.addShader(bit);
 		PlayState.instance.camHUD.addShader(bit);
 		bit.enablethisbitch = 1.;}
 }

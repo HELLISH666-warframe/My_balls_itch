@@ -5,10 +5,10 @@ function postCreate() {
 	mmtw = FlxG.sound.load(Paths.music('tstpwyptg'), 0, true);
 	mmtw.volume = 0;
 	mmtw.play(false, FlxG.random.int(0, Std.int(mmtw.length / 2)));
-	if (modSave.glitch) {FlxG.camera.addShader(glitch); glitch.on = 1.;}
-	if (modSave.vhs) FlxG.camera.addShader(vhs);
-	if (modSave.crt) FlxG.camera.addShader(crt = new CustomShader("fake CRT"));
-	if (modSave.chrom) {FlxG.camera.addShader(chrom = new CustomShader("chromatic aberration"));
+	if (FlxG.save.data.glitch) {FlxG.camera.addShader(glitch); glitch.on = 1.;}
+	if (FlxG.save.data.vhs) FlxG.camera.addShader(vhs);
+	if (FlxG.save.data.crt) FlxG.camera.addShader(crt = new CustomShader("fake CRT"));
+	if (FlxG.save.data.chrom) {FlxG.camera.addShader(chrom = new CustomShader("chromatic aberration"));
 		chrom.rOffset = chromeOffset/2; chrom.bOffset = chromeOffset * -1;
 	}
 	var bg = CoolUtil.loadAnimatedGraphic(new FlxSprite(-80,-48.375), Paths.image('menus/titlescreen/titleThing'));

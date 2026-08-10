@@ -46,10 +46,10 @@ function create() {
 	add(sanstitre = new FlxBackdrop(Paths.image('menus/desktop/sanstitre'), FlxAxes.XY, 0, 0));
 	add(rainbowscreen = new FlxBackdrop(Paths.image('menus/desktop/rainbowpcBg'), FlxAxes.XY, 0, 0));
 	add(new FlxSprite().loadGraphic(Paths.image("menus/desktop/pcBg")));
-	if (modSave.crt)FlxG.camera.addShader(crt = new CustomShader("fake CRT"));
-	if (modSave.colour) {FlxG.camera.addShader(bit = new CustomShader("8bitcolor"));
+	if (FlxG.save.data.crt)FlxG.camera.addShader(crt = new CustomShader("fake CRT"));
+	if (FlxG.save.data.colour) {FlxG.camera.addShader(bit = new CustomShader("8bitcolor"));
 	bit.enablethisbitch = 1.;}
-	if (modSave.chrom) FlxG.camera.addShader(chrom);
+	if (FlxG.save.data.chrom) FlxG.camera.addShader(chrom);
 	
 	add(window = CoolUtil.loadAnimatedGraphic(new FlxSprite(FlxG.width/1.3-405,ywindow),Paths.image('menus/desktop/menuCarNew'))).angle = 3;
 	FlxTween.tween(window, {y: ywindow + 10, angle: -3}, 1, {ease: FlxEase.circInOut, type: 4});
@@ -168,7 +168,7 @@ function acceptCode() {
 		case "2012": rainbowscreen.visible = false; FlxG.sound.play(Paths.sound('vine'));
 		case "winver": FlxG.state.add(new Winver()); case "cdplayer": FlxG.state.add(new MusicPlayer());
 		FlxG.sound.music.volume = 0.01;
-		case "passionatedevs": //modSave.rtxMode = !modSave.rtxMode;
+		case "passionatedevs": //FlxG.save.data.rtxMode = !FlxG.save.data.rtxMode;
 		FlxG.camera.addShader(rtx = new CustomShader("NVIDIA RTX Architecture"));
 		case "ron-b"|'b-ron': PlayState.loadSong('ron-bside', 'normal');
 		FlxG.switchState(new PlayState());

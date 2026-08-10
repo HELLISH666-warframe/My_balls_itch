@@ -6,8 +6,8 @@ var time:Float = 0;
 var chrom = new CustomShader("chromatic aberration");
 var shit = [["MAIN","CLASSIC","EXTRAS"],[0xFF8C81D9,0xFFC63C3f,0xFFDCF5F4],[[866,433],[866,0],[0,-430]]];
 function create() {
-	if (modSave.crt)FlxG.camera.addShader(crt = new CustomShader("fake CRT"));
-	if (modSave.chrom)FlxG.camera.addShader(chrom);
+	if (FlxG.save.data.crt)FlxG.camera.addShader(crt = new CustomShader("fake CRT"));
+	if (FlxG.save.data.chrom)FlxG.camera.addShader(chrom);
 	
 	add(bg = CoolUtil.loadAnimatedGraphic(new FlxSprite(320,178.5),Paths.image('menus/freeplay/mainbgAnimate'))).scale.set(2,2);
 	add(ground = new FlxSprite(0,522).loadGraphic(Paths.image('menus/freeplay/freeplay select/ground')));
@@ -38,7 +38,7 @@ function update(elapsed:Float) {time += elapsed;
 	if(controls.BACK) FlxG.switchState(new MainMenuState());
 }
 function changeSelection(p) {
-	modSave.freeplaything = curSelMaster = FlxMath.wrap(curSelMaster + p, 0, 2);
+	FlxG.save.data.freeplaything = curSelMaster = FlxMath.wrap(curSelMaster + p, 0, 2);
 	for(i in [ro,classicImage,extraImage]){FlxTween.cancelTweensOf(i); i.color = FlxColor.GRAY;}
 	FlxTween.cancelTweensOf(bg,'color');
 	[ro,classicImage,extraImage][curSelMaster].color=FlxColor.WHITE;
