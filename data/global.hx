@@ -14,6 +14,11 @@ function new() {
     FlxG.save.data.warning ??= true;
     FlxG.save.data.website ??= true;
     FlxG.save.data.TimeBar ??= "Disabled";
+
+    FlxG.mouse.useSystemCursor = false;
+    FlxG.mouse.load(Assets.getBitmapData(Paths.image('menus/cursor')),1,1,1);
+    FlxG.mouse.visible = false;
+
     for (i in Paths.getFolderContent('data/global')) importScript("data/global/"+Path.withoutExtension(i)); //import different global scripts for organization reasons
 }
 import funkin.backend.system.Flags;
@@ -33,6 +38,13 @@ function postStateSwitch() if(FlxG.save.data.rtx)makeTheModGood(true);
 //Test
 function update() {
     if (FlxG.keys.pressed.SHIFT && FlxG.keys.pressed.H)
-        FlxG.switchState(new ModState('ron/fp_test'));
+        FlxG.switchState(new ModState('ron/test'));
         //FlxG.switchState(new ModState('tco/credits_test',{"videoName": 'tco_credits',"canSkip":false}));
+}
+
+function destroy(){
+    FlxG.mouse.useSystemCursor = true;
+    FlxG.mouse.visible = false;
+    if(FlxG.save.data.rtx)
+    FlxG.game.removeShader(rtxShader);
 }

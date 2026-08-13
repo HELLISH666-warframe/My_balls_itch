@@ -12,8 +12,8 @@ var vhs = new CustomShader("vhs");
 
 songs = [];
 songRealList = [["ron","wasted","ayo","bloodshed","trojan-virus"],
-	["ron-classic","wasted-classic","ayo-classic","bloodshed-classic","trojan-virus-classic","bleeding-classic"],
-	["Tutorial","bloodbath","official-debate","gron","difficult-powers","bijuu","trouble","holy-shit-dave-fnf","slammed","ron-dsides","lights-down-remix","pretty-wacky","triad","certified-champion","rong-aisle","bloodshed-legacy-redux","clusterfunk","awesome-ron","oh-my-god-hes-ballin","fardventure","bleeding","ron-bside","wasted-bside"]];
+	["ron-classic","wasted-classic","ayo-classic","bloodshed-classic","trojan-virus-classic","bleeding-classic","ron-bside","wasted-bside"],
+	["Tutorial","bloodbath","official-debate","gron","difficult-powers","bijuu","trouble","holy-shit-dave-fnf","slammed","ron-dsides","lights-down-remix","pretty-wacky","triad","certified-champion","rong-aisle","bloodshed-legacy-redux","clusterfunk","awesome-ron","oh-my-god-hes-ballin","fardventure","bleeding"]];
 
 for(s in songRealList[FlxG.save.data.freeplaything]) songs.push(Chart.loadChartMeta(s, "hard", true));
 var camText = new FlxCamera();

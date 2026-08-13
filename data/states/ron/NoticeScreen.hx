@@ -16,9 +16,8 @@ function postCreate() {
 	bg.updateHitbox();
 	bg.alpha = 0.33;
 	add(bg).scrollFactor.set(0.1,0.1);
-	titleAlphabet.visible = disclaimer.visible = false;
 
-	add(screen = new FlxSprite().loadGraphic(Paths.image("menus/warning/lol"))).angle = -3;
+	add(screen = new FlxSprite().loadGraphic(Paths.image("menus/warning"))).angle = -3;
 		
 	FlxTween.tween(screen, {y: screen.y + 20}, 1, {ease: FlxEase.circInOut, type: FlxTween.PINGPONG});
 	FlxTween.tween(screen, {angle: 3}, 2, {ease: FlxEase.backInOut, type: FlxTween.PINGPONG});

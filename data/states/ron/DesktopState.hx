@@ -7,6 +7,10 @@ import flixel.ui.FlxButton;
 import CustomFadeTransition;
 import funkin.backend.utils.DiscordUtil;
 import StringTools;
+
+import ron.menus.runtabtest;
+import ron.menus.Winver;
+
 var time:Float = 0;
 var chrom = new CustomShader("chromatic aberration");
 var rainbowscreen,sanstitre;
@@ -29,7 +33,6 @@ var tab,ok,cancel,exit,help;
 var t = Paths.getSparrowAtlas("menus/windowsUi/run tab");
 var white:FunkinSprite = new FunkinSprite(50, 640).makeSolid(280, 25, FlxColor.WHITE);
 var typeText:FunkinText = new FunkinText(58, 643, 270, "|", 18, false);
-var runTabBottons:Array<FlxButton> = [];
 function create() {
 	DiscordUtil.changePresenceSince("In the desktop", null);
 	CustomFadeTransition.nextCamera = FlxG.camera;
@@ -80,30 +83,7 @@ function create() {
 		buttons.push(button);
 		iconI++;
 	}
-	add(white);
-	tab = new FlxSprite(0, 560);
-	tab.frames = t;
-	tab.animation.addByPrefix("d", "tab");
-	add(tab).animation.play("d");
-	add(typeText).color = FlxColor.BLACK;
-	ok = new FlxButton(177, 685, "", ()-> {acceptCode(); kys();});
-	cancel = new FlxButton(258, 685, "", ()-> {kys();});
-	help = new FlxButton(308, 566, "", ()-> {CoolUtil.openURL("www.facebook.com");});
-	exit = new FlxButton(327, 566, "", ()-> {kys();});
-	for (i=>button in [ok, cancel, help, exit]) {
-		button.frames = t;
-		var animIndex = ["ok", "cancel", "help", "exit"];
-		button.animation.addByPrefix("normal", animIndex[i] + " neutral");
-		button.animation.addByPrefix("highlight", animIndex[i] + " neutral");
-		button.animation.addByPrefix("pressed", animIndex[i] + " pressed");
-		button.updateHitbox();
-		runTabBottons.push(button);
-		add(button);
-	}
-	exit.width=help.width-=58;
-	kys();
 }
-var typing:Bool = false;
 function update(elapsed:Float) {
 	time += elapsed;
 	chrom.rOffset = chromeOffset*Math.sin(time);
@@ -117,64 +97,30 @@ function update(elapsed:Float) {
 	}
 
 	if (clickAmounts != 2) FlxG.mouse.visible = true;
-	if (FlxG.keys.pressed.CONTROL && FlxG.keys.justPressed.R && !typing) {
-		giveBirth(); new FlxTimer().start(.001, ()->{typing = !typing;});
-	}
+	if (FlxG.keys.pressed.CONTROL && FlxG.keys.justPressed.R)
+		urtab=new runtabtest();
 }
 
-var nonoKeys=[-1,9,13,15,16,17,18,20,27,37,38,39,40,187,192];
-function postUpdate(elapsed:Float) {
-	if(FlxG.keys.justPressed.ANY)
-	trace(FlxG.keys.firstJustPressed());
-	if (FlxG.keys.justPressed.ANY && typing && !nonoKeys.contains(FlxG.keys.firstJustPressed()) && FlxG.keys.firstJustPressed() <= 190) {
-        if (typeText.text == "|") typeText.text = "";
-        typeText.visible = true;
-    
-        if (FlxG.keys.justPressed.BACKSPACE && typeText.text != "|" && typeText.text != "")
-            typeText.text = typeText.text.substr(0, typeText.text.length - 1);
-        else if (typeText.text.length < 32)
-            typeText.text += idk(CoolUtil.keyToString(FlxG.keys.firstJustPressed()).toLowerCase());
-
-        if (typeText.text == "") typeText.text = "|";
-    }
-}
-
-function idk(_:String) {
-    return switch (_) {
-        case "SPACE": " ";
-        case "[←]": "";
-		case "minus": "-";
-        default: _;
-    }
-}
-
-function giveBirth() {
-	for(i in 0...4) for (fuck in [white,tab,typeText,runTabBottons[i]]){ fuck.alpha=1;
-	fuck.active=true;
-	}
-}
-function kys() {
-	typing=false;for(i in 0...4) for (fuck in [white,tab,typeText,runTabBottons[i]]) {fuck.alpha=0;
-		fuck.active=false;
-	}
-}
 function beatHit()if(typeText.text=="|") typeText.visible =!typeText.visible;
 
-function acceptCode() {
-	switch (typeText.text) {
+function acceptCode(e) {
+	switch (e) {
         case "teevee": CoolUtil.openURL("https://youtu.be/X9hIJDzo9m0");
 		case "ron": #if windows Sys.command("start RON.exe"); #end
 		case "full"|"full version"|"2.5"|"3.0"|"demo 3"|"next demo":CoolUtil.openURL("https://youtu.be/pNzGTCEmf3U");
 		case "2012": rainbowscreen.visible = false; FlxG.sound.play(Paths.sound('vine'));
-		case "winver": FlxG.state.add(new Winver()); case "cdplayer": FlxG.state.add(new MusicPlayer());
+		case "winver":winVer = new Winver();case "cdplayer": FlxG.state.add(new MusicPlayer());
 		FlxG.sound.music.volume = 0.01;
 		case "passionatedevs": //FlxG.save.data.rtxMode = !FlxG.save.data.rtxMode;
 		FlxG.camera.addShader(rtx = new CustomShader("NVIDIA RTX Architecture"));
-		case "ron-b"|'b-ron': PlayState.loadSong('ron-bside', 'normal');
-		FlxG.switchState(new PlayState());
-		case "wasted-b": PlayState.loadSong('wasted-bside', 'normal');
+		case "ron-b"|'b-ron'|'flip':PlayState.loadSong('ron-bside', 'normal'); FlxG.switchState(new PlayState());
+		case "wasted-b":PlayState.loadSong('wasted-bside', 'normal'); FlxG.switchState(new PlayState());
+		case "week2":PlayState.loadSong('atelophobia', 'hard'); FlxG.switchState(new PlayState());
+		case "peak"|"ron undertale" |"for old times sake"|'week2'|'trouble'|'black-hole':
+			var songIndex = ["peak" => "awesome-ron", "ron undertale" => "haemorrhage", "for old times sake" => "oneirophobia",'week2'=>'atelophobia','trouble'=>'trouble','black-hole'=>'anti-piracy'];
+			PlayState.loadSong(songIndex[e], 'hard');
 		FlxG.switchState(new PlayState());
 		default: 
-		CoolUtil.openURL(typeText.text);
+		CoolUtil.openURL(e);
 	}
 }

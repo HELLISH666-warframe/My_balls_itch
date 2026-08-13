@@ -1,0 +1,24 @@
+tween_cam_alpha.hx________PACKSEP________function onEvent(_) {
+    if (_.event.name == 'tween_cam_alpha') {
+        FlxTween.tween(Reflect.field(state, _.event.params[0]), {alpha: _.event.params[1]}, _.event.params[2], {ease: CoolUtil.flxeaseFromString(_.event.params[3])});}
+}________PACKSEP________{
+	"params": [
+		{
+			"name": "Camera",
+			"type": "DropDown('camGame', 'camHUD', 'FlxG.camera')",
+			"defaultValue": 0
+		},{
+			"name": "Alpha",
+			"type": "Float(0, 1, 0.001, 9)",
+			"defaultValue": 1
+		},{
+			"name": "Tween Time (Seconds)",
+			"type": "Float(0.001, 9999, 0.001, 9)",
+			"defaultValue": 4
+		},{
+			"name": "Ease",
+			"type": "String",
+			"defaultValue": "circInOut"
+		}
+	]
+}

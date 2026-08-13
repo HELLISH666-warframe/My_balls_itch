@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="change options.png">
+	<SubTexture name="change options select0000" x="167" y="0" width="167" height="25"/>
+	<SubTexture name="change options unselect0000" x="0" y="0" width="167" height="25"/>
+</TextureAtlas>

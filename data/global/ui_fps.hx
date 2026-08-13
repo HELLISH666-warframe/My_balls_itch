@@ -11,7 +11,7 @@ function new() {
     // custom fps shit
 	Main.instance.addChild(customText = new TextField()).defaultTextFormat = customFormat;
 	Main.instance.addChild(customSubText = new TextField()).defaultTextFormat = customFormat;
-	customSubText.text = "\n\n"+Flags.VERSION_MESSAGE;
+	customSubText.text = "\n\n\n"+Flags.VERSION_MESSAGE;
 	customSubText.width = customSubText.textWidth + 10;
 	customSubText.alpha = 0.3;
 	customText.x = customText.y = customSubText.x = customSubText.y = 5;
@@ -26,7 +26,7 @@ function update() {
     dAlpha=CoolUtil.fpsLerp(dAlpha, Framerate.debugMode > 0 ? 1 : 0, 0.5);
     customText.x=customSubText.x = FlxMath.lerp(-customText.width - 30, 0, dAlpha);
     switch (curStyle) {
-        default:customText.text = "FPS: " + Framerate.fpsCounter.fpsNum.text + "\nMEM: " + Framerate.memoryCounter.memoryText.text + Framerate.memoryCounter.memoryPeakText.text;
+        default:customText.text = "FPS: " + Framerate.fpsCounter.fpsNum.text + "\nREAL Memory Counter: " + MemoryUtil.currentMemUsage()+' GB\nThe REAL FL Studio 21.1.1.3750';
         customText.width = customText.textWidth;
     }
 }
@@ -49,9 +49,6 @@ public static function updateCurStyle(e){
         Framerate.codenameBuildField.visible = Framerate.memoryCounter.memoryText.visible = Framerate.memoryCounter.memoryPeakText.visible = Framerate.fpsCounter.fpsNum.visible = Framerate.fpsCounter.fpsLabel.visible = true;
         Framerate.codenameBuildField.text = 'Codename Engine ';
         customText.visible=customSubText.visible=false;
-        case 'Psych':/*changeFpsFont('_sans.ttf');
-        Framerate.codenameBuildField.visible = Framerate.memoryCounter.memoryText.visible = Framerate.memoryCounter.memoryPeakText.visible = Framerate.fpsCounter.fpsNum.visible = Framerate.fpsCounter.fpsLabel.visible = true;*/
-        customText.defaultTextFormat=customSubText.defaultTextFormat = new TextFormat(Paths.getFontName(Paths.font('_sans.ttf')));
         default:customSubText.visible=true;
         customText.defaultTextFormat = customSubText.defaultTextFormat = customFormat;
     }

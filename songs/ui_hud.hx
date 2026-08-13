@@ -41,7 +41,7 @@ function create() {
 
     updateTime = showTime;
 
-    timeBarBG = new FlxSprite().loadGraphic(Paths.image('timeBar'));
+    timeBarBG = new FlxSprite().loadGraphic(Paths.image('game/timeBar'));
 	timeBarBG.x = timeTxt.x;
 	timeBarBG.y = timeTxt.y + (timeTxt.height / 4);
 	timeBarBG.scrollFactor.set();
