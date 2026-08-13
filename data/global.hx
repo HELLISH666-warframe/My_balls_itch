@@ -19,7 +19,24 @@ function new() {
     FlxG.mouse.load(Assets.getBitmapData(Paths.image('menus/cursor')),1,1,1);
     FlxG.mouse.visible = false;
 
+    FlxG.stage.window.onKeyDown.add(keyDn);
+	FlxG.stage.window.onTextInput.add(txtInput);
+
     for (i in Paths.getFolderContent('data/global')) importScript("data/global/"+Path.withoutExtension(i)); //import different global scripts for organization reasons
+}
+
+public static var keyDownAH:Array<(e:KeyCode,modifier:KeyModifier)-> Void> = [];
+function keyDn(e:KeyCode, modifier:KeyModifier) {
+    for(func in keyDownAH) {
+        func(e,modifier);
+    }
+}
+
+public static var texyDown:(e:KeyCode)->Void;
+function txtInput(e) {
+    for(func in texyDown) {
+        func(e);
+    }
 }
 import funkin.backend.system.Flags;
 Flags.DISABLE_WARNING_SCREEN=!FlxG.save.data.warning;
@@ -47,4 +64,6 @@ function destroy(){
     FlxG.mouse.visible = false;
     if(FlxG.save.data.rtx)
     FlxG.game.removeShader(rtxShader);
+    FlxG.stage.window.onKeyDown.remove(onKeyDown);
+	FlxG.stage.window.onTextInput.remove(onTextInput);
 }

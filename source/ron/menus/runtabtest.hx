@@ -5,7 +5,9 @@ import flixel.math.FlxPoint;
 import flixel.ui.FlxButton;
 using IUIFocusable;
 class runtabtest extends FunkinSprite {
-	public var tab,ok,cancel,exit,help;
+	public var ok,cancel,exit,help;
+	public var tab;
+	public var tabBar;
 	var t = Paths.getSparrowAtlas("menus/windowsUi/run tab");
 	var cacheRect = new Rectangle();
     public var tab:FunkinSprite;
@@ -13,7 +15,6 @@ class runtabtest extends FunkinSprite {
 	public var caretSpr;
 	var position:Int = 0;
 	public var typing = false;
-	public var added:Bool=false;
 
 	public var acceptCode:String->Void;
     
@@ -22,12 +23,14 @@ class runtabtest extends FunkinSprite {
 
 		makeSolid(271, 17, FlxColor.WHITE);
         scrollFactor.set();
+		FlxG.state.add(this);
         
 		tab = new FunkinSprite(0, 560);
 		tab.frames = t;
 		tab.animation.addByPrefix("d", "tab");
 		tab.animation.play("d");
-		ok = new FlxButton(177, 685, "", ()-> {acceptCode(); destroy();});
+		FlxG.state.add(tab);
+		ok = new FlxButton(177, 685, "", ()-> {acceptCode(typeText.text);});
 		cancel = new FlxButton(258, 685, "", ()-> {destroy();});
 		help = new FlxButton(308, 566, "", ()-> {CoolUtil.openURL("www.facebook.com");});
 		exit = new FlxButton(327, 566, "", ()-> {destroy();});
@@ -38,7 +41,10 @@ class runtabtest extends FunkinSprite {
 		button.animation.addByPrefix("highlight", animIndex[i] + " neutral");
 		button.animation.addByPrefix("pressed", animIndex[i] + " pressed");
 		button.updateHitbox();
+		FlxG.state.add(button);
 	}
+	help.setSize(15,13);
+	exit.setSize(15,13);
 
 	position = 1;
 
@@ -46,26 +52,38 @@ class runtabtest extends FunkinSprite {
 	caretSpr.makeGraphic(1, 1, FlxColor.BLACK);
 	caretSpr.scale.set(1, typeText.size);
 	caretSpr.updateHitbox();
+	FlxG.state.add(caretSpr);
 
 	typeText.font=Paths.font('w95.otf');
 	typeText.color = FlxColor.BLACK;
+	FlxG.state.add(typeText);
 
-	FlxG.stage.window.onKeyDown.add(onKeyDown);
-	FlxG.stage.window.onTextInput.add(onTextInput);
+	tabBar = new FlxButton(0, 560, "");
+	tabBar.width = 347;
+	tabBar.height = 20;
+	tabBar.alpha = 0;
+	tabBar.allowSwiping = true;
+	FlxG.state.add(tabBar);
     }
-
-	public function huh() {
-		FlxG.state.add(this);
-		FlxG.state.add(tab);
-		for (i=>button in [ok, cancel, help, exit]) FlxG.state.add(button);
-		FlxG.state.add(caretSpr);
-		FlxG.state.add(typeText);
-		added=true;
-	}
-    
+	var justMousePos = FlxPoint.get();
+	var justTaskBarPos = FlxPoint.get();
+	var movingTab = false;
 	var currentFocus=null;
     override function update(_) {
         super.update(_);
+		trace(tabBar.status);
+		if (tabBar.status == 2) {
+			justMousePos = FlxG.mouse.getScreenPosition(); justTaskBarPos.set(tab.x, tab.y);movingTab = true;
+		}
+		if (FlxG.mouse.justReleased) movingTab = false;
+		if (movingTab) {
+			tab.setPosition(Math.round(FlxG.mouse.getScreenPosition().x - justMousePos.x) + justTaskBarPos.x, Math.round(FlxG.mouse.getScreenPosition().y - justMousePos.y) + justTaskBarPos.y);
+			for (button in [ok, cancel, help, exit, tabBar, this,typeText]) {
+				var offsetIndex = [ok => [177, 125],cancel => [258, 125],help => [308, 6],exit => [327, 6],tabBar => [0, 0],this => [58, 84],typeText => [58, 84]];
+				button.setPosition(tab.x + offsetIndex[button][0], tab.y + offsetIndex[button][1]);
+			}
+		}
+		
 		//currentFocus = (FlxG.mouse.overlaps(this))?true:null;
 		typing=(actuallyOverlaps(this,FlxG.camera)&&active);
 		FlxG.sound.keysAllowed = !typing;
@@ -116,7 +134,7 @@ class runtabtest extends FunkinSprite {
 		position = FlxMath.wrap(position + change, 0, typeText.text.length);
 	}
 	//import lime.ui.KeyCode;
-	function onKeyDown(e:KeyCode, modifier:KeyModifier) {
+	function keyDownAH(e:KeyCode, modifier:KeyModifier) {
 		if (!typing)return;
 		/*trace(FlxG.keys.firstJustPressed());
 		trace(e,CoolUtil.keyToString(e));*/
@@ -127,18 +145,16 @@ class runtabtest extends FunkinSprite {
 				changeSelection(-1);
 			}
 			case 13:acceptCode(typeText.text);
+			destroy();
 			case 37:changeSelection(-1);
 			case 39:changeSelection(1);
 		}
 	}
 	function destroy() {
-		added=false;
-		for(i in [typeText,caretSpr,tab,ok,cancel,exit,help]){FlxG.state.remove(i,true);i.kill();i.destroy();}
+		for(i in [typeText,caretSpr,tab,ok,cancel,exit,help,tabBar]){FlxG.state.remove(i,true);i.kill();i.destroy();}
 		FlxG.state.remove(this,true);
 		super.destroy();
 		trace("Wowie.");
-		FlxG.stage.window.onKeyDown.remove(onKeyDown);
-		FlxG.stage.window.onTextInput.remove(onTextInput);
 		FlxG.sound.keysAllowed=true;
 	}
 

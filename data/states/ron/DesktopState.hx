@@ -8,6 +8,7 @@ import CustomFadeTransition;
 import funkin.backend.utils.DiscordUtil;
 import StringTools;
 
+import ron.menus.MusicPlayer;
 import ron.menus.runtabtest;
 import ron.menus.Winver;
 
@@ -84,6 +85,7 @@ function create() {
 		iconI++;
 	}
 }
+
 function update(elapsed:Float) {
 	time += elapsed;
 	chrom.rOffset = chromeOffset*Math.sin(time);
@@ -98,7 +100,7 @@ function update(elapsed:Float) {
 
 	if (clickAmounts != 2) FlxG.mouse.visible = true;
 	if (FlxG.keys.pressed.CONTROL && FlxG.keys.justPressed.R)
-		urtab=new runtabtest();
+		urtab=new runtabtest().acceptCode = function(e) {acceptCode(e);}
 }
 
 function beatHit()if(typeText.text=="|") typeText.visible =!typeText.visible;
@@ -109,7 +111,7 @@ function acceptCode(e) {
 		case "ron": #if windows Sys.command("start RON.exe"); #end
 		case "full"|"full version"|"2.5"|"3.0"|"demo 3"|"next demo":CoolUtil.openURL("https://youtu.be/pNzGTCEmf3U");
 		case "2012": rainbowscreen.visible = false; FlxG.sound.play(Paths.sound('vine'));
-		case "winver":winVer = new Winver();case "cdplayer": FlxG.state.add(new MusicPlayer());
+		case "winver":winVer = new Winver();case "cdplayer"|'s': cdPlayer = new MusicPlayer();
 		FlxG.sound.music.volume = 0.01;
 		case "passionatedevs": //FlxG.save.data.rtxMode = !FlxG.save.data.rtxMode;
 		FlxG.camera.addShader(rtx = new CustomShader("NVIDIA RTX Architecture"));
@@ -123,4 +125,8 @@ function acceptCode(e) {
 		default: 
 		CoolUtil.openURL(e);
 	}
+}
+
+function destroy() {
+	FlxG.sound.keysAllowed=true;
 }

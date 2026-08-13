@@ -16,6 +16,7 @@ function stepHit(curStep:Int) {
 	iconP2.alpha = (2-(health)-0.25)/2+0.2;
 	iconP1.alpha = (health-0.25)/2+0.2;
 	switch (curStep) {
+		case 1:for(i in [healthBar,healthBarBG]) FlxTween.tween(i, {alpha: 0}, 0.3, {ease: FlxEase.circOut});
 		case 248|760: FlxG.sound.play(Paths.sound('vine'));
 		case 256: defaultCamZoom += 0.1;
 		case 384: defaultCamZoom += 0.15;
