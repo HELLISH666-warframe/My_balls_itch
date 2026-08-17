@@ -1,5 +1,5 @@
-import flixel.addons.effects.FlxTrail;
 import flixel.addons.effects.FlxTrailArea;
+import flixel.addons.effects.FlxTrail;
 var rain = new CustomShader("rain");
 rain.iTime=0;
 var evilTrail = new FlxTrail(dad, null, 4, 24, 0.3, 0.069); 

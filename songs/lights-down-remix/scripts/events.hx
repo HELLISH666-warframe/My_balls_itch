@@ -1,6 +1,6 @@
-var time:Float = 0;
 var chrom = new CustomShader("chromatic aberration");
 var glitch = new CustomShader("glitchsmh");
+glitch.iTime=0;
 function postCreate() {
 	wbg = new FlxSprite().makeGraphic(FlxG.width*3, FlxG.height*3, FlxColor.BLACK);
     wbg.scale.set(5,5);
@@ -17,18 +17,14 @@ function postCreate() {
     fx.scrollFactor.set(0, 0);
     fx.alpha = 0.5;	
 }
-function update(elapsed:Float){time += elapsed;
-	chrom.rOffset = chromeOffset*Math.sin(time);
-	chrom.bOffset = -chromeOffset*Math.sin(time);
-	glitch.iTime = time;
-}
-function beatHit(curBeat){
+function update(elapsed:Float) glitch.iTime += elapsed;
+function beatHit(curBeat)
 	if (curBeat == 64) {
 		camGame.flash(FlxColor.WHITE, 0.2);
-		if (FlxG.save.data.chrom) FlxG.camera.addShader(chrom);
+		if (FlxG.save.data.chrom) {FlxG.camera.addShader(chrom);
+            chrom.rOffset=chromeOffset/2; chrom.bOffset=chromeOffset*-1; }
 		if (FlxG.save.data.glitch) {FlxG.camera.addShader(glitch); glitch.on = 1.;}
 		stage.getSprite("background").visible=false;
 		add(fx);
 		add(wbg);
 	}
-}

@@ -20,7 +20,7 @@ function create() {
 	bg.screenCenter();
 	bg.scale.set(2,2);
 	insert(0,bg);
-	creditJSON = Json.parse(Assets.getText(Paths.json("config/credit")));
+	creditJSON = Json.parse(Assets.getText(Paths.json("config/credits")));
 	for (i in 0...creditJSON.length){
 		var j = new Alphabetthing(0, 100 + (150 * i), creditJSON[i].handle,true);
 		j.ID = i;

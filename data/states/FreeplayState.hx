@@ -1,8 +1,9 @@
-import Alphabetthing;
-import flixel.graphics.FlxGraphic;
-import funkin.backend.chart.Chart;
-import flixel.effects.particles.FlxParticle;
 import flixel.effects.particles.FlxTypedEmitter;
+import flixel.effects.particles.FlxEmitterMode;
+import flixel.effects.particles.FlxParticle;
+import funkin.backend.chart.Chart;
+import flixel.graphics.FlxGraphic;
+import Alphabetthing;
 
 var time = 0;
 var chrom = new CustomShader("chromatic aberration");
@@ -90,26 +91,30 @@ function postCreate(){
 	camText.addShader(fish = new CustomShader(FlxG.save.data.rtx?"fisheye-good":"fisheye"));
 	fish.MAX_POWER = 0.2;
 
-	var coolemitter = new FlxTypedEmitter(null,FlxG.height);
+	var coolemitter = new FlxTypedEmitter();
 	coolemitter.velocity.set(0, -5, 0, -10);
+	coolemitter.y = FlxG.height;
+		
 	var coolzemitter = new FlxTypedEmitter();
 	coolzemitter.velocity.set(0, 5, 0, 10);
-
+		
 	for (i in 0...150) {
-		for(pratt in [coolemitter,coolzemitter]){
-			pratt.add(p = new FlxParticle().makeGraphic(6,6,FlxColor.BLACK));
-			pratt.add(p2 = new FlxParticle().makeGraphic(12,12,FlxColor.BLACK));
-		}
+		coolemitter.add(p = new FlxParticle().makeGraphic(6,6,FlxColor.BLACK));
+		coolemitter.add(p2 = new FlxParticle().makeGraphic(12,12,FlxColor.BLACK));					
+		coolzemitter.add(p = new FlxParticle().makeGraphic(6,6,FlxColor.BLACK));
+		coolzemitter.add(p2 = new FlxParticle().makeGraphic(12,12,FlxColor.BLACK));
 	}
+
 	for(i in [coolzemitter,coolemitter]){
 		i.width = FlxG.width*1.5;
+		i.launchMode = FlxEmitterMode.SQUARE;
 		i.angularVelocity.set(-10, 10);
 		i.lifespan.set(5);
 		add(i).start(false, 0.05);
 	}
 }
 function shadering(REAL:Int,?string:String=""){
-	var cursong = songs[REAL].displayName;
+	var cursong = songs[REAL].displayName.toLowerCase();
 	if(string=="hand"){
 		if(Assets.exists(Paths.image('menus/freeplay/portraits/'+cursong+'-over')))
 		portraitOverlay.loadGraphic(Paths.image('menus/freeplay/portraits/'+cursong+'-over'));
@@ -119,9 +124,9 @@ function shadering(REAL:Int,?string:String=""){
 		return;
 	}
     switch(cursong)	{
-		case"gron":if(FlxG.save.data.grey)grey.enable=1;
+		case"gron":grey.enable=1;
 		case"trojan-virus":glitch.on = 1.;
-		case"Bleeding":diffText.color=0xE00020;glitch.on = 1.;
+		case"bleeding":diffText.color=0xE00020;glitch.on = 1.;
 		default:grey.enable=0; glitch.on = 0;diffText.color=0xFFFFFFFF;
     }
 }

@@ -3,7 +3,7 @@ function create() {
 	defaultCamZoom += 0.2;
 }
 
-function update(elapsed:Float) {
+function update60(elapsed:Float) {
 	camHUD.x = FlxMath.lerp(camHUD.x, 0, 0.2 / (60 / Options.framerate));
 	camHUD.y = FlxMath.lerp(camHUD.y, 0, 0.2 / (60 / Options.framerate));
 }

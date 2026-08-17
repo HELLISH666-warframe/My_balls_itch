@@ -20,7 +20,6 @@ public function evilbar() {
     }
     iconP1.y = iconP2.y -= 6;
     healthBarBG1.color = boyfriend.iconColor; healthBarBG2.color = dad.iconColor;
-    for(score in [scoreTxt,missesTxt,accuracyTxt]) score.visible=false;
 }
 
 function create() {

@@ -1,13 +1,12 @@
 import flixel.text.FlxTextBorderStyle;
 import openfl.display.BlendMode;
 importScript("data/scripts/healthdrainers");
-var time:Float = 0;
-public var windowmovebath:Bool = false;
-public var cameramoveblood:Bool = false;
-public var intensecameramoveshed:Bool = false;
-public var cameramovebleed:Bool = false;
-public var intensecameramovebleed:Bool = false;
-public var fx:FlxSprite = new FlxSprite().loadGraphic(Paths.image('stages/effect'));
+public var windowmovebath = false;
+public var cameramoveblood = false;
+public var intensecameramoveshed = false;
+public var cameramovebleed = false;
+public var intensecameramovebleed = false;
+public var fx = new FlxSprite().loadGraphic(Paths.image('stages/effect'));
 fx.setGraphicSize(Std.int(2560 * 1)); // i dont know why but this gets smol if i make it the same size as the kade ver
 fx.updateHitbox();
 fx.antialiasing = true;
@@ -27,15 +26,14 @@ exploders.scrollFactor.set(0, 0);
 exploders.screenCenter();
 exploders.visible = false;
 add(exploders);
-public var chrom:CustomShader = new CustomShader("chromatic aberration");
-public var chromeOffset2 = (((2 - health)*Math.sin(curStep/10))*FlxG.save.data.chromeOffset/350)/5;
+public var chrom = new CustomShader("chromatic aberration");
+chrom.rOffset=chromeOffset;
+chrom.bOffset=chromeOffset*-1;
 public var SCREWYOU:Bool = false;
 var unfair = new FlxText(400, 55, FlxG.width - 800, "UNFORGIVING INPUT ENABLED!", 32);
 var unfairSine:Float = 0;
-function update(elapsed:Float){time += elapsed;
-	chrom.data.rOffset.value = [chromeOffset*Math.sin(time)];
-	chrom.data.bOffset.value = [-chromeOffset*Math.sin(time)];
-	var currentBeat:Float = (Conductor.songPosition / 1000)*(Conductor.bpm/60);
+function update(elapsed:Float){
+	var currentBeat = (Conductor.songPosition / 1000)*(Conductor.bpm/60);
 	//Used in Bloodbath.
 if (windowmovebath)
 	window.move(Math.round(24 * Math.sin(currentBeat * Math.PI) + 327), Math.round(24 * Math.sin(currentBeat * 3) + 160));
@@ -67,8 +65,7 @@ if (FlxG.save.data.chrom){FlxG.camera.addShader(chrom);camHUD.addShader(chrom);}
 	add(Estatic);
 	FlxTween.tween(Estatic.scale, {x:1.2,y:1.2}, Conductor.crochet / 1000, {ease: FlxEase.quadInOut,type: FlxTween.PINGPONG});
 }
-	if (dad.curCharacter == 'hellron')
-GameOverSubstate.script = 'data/scripts/gameovers/slap';
+	if (dad.curCharacter == 'hellron') GameOverSubstate.script = 'data/scripts/gameovers/slap';
 if (curStage == 'hell')Estatic.alpha = 1;
 	unfair.setFormat(Paths.font("w95.otf"), 32, FlxColor.WHITE, 'center', FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 	unfair.borderSize = 1.25;
