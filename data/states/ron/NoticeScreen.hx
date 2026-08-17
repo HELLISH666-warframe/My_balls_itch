@@ -11,11 +11,10 @@ function postCreate() {
 	if (FlxG.save.data.chrom) {FlxG.camera.addShader(chrom = new CustomShader("chromatic aberration"));
 		chrom.rOffset = chromeOffset/2; chrom.bOffset = chromeOffset * -1;
 	}
-	var bg = CoolUtil.loadAnimatedGraphic(new FlxSprite(-80,-48.375), Paths.image('menus/titlescreen/titleThing'));
+	add(bg = CoolUtil.loadAnimatedGraphic(new FlxSprite(-80,-48.375), Paths.image('menus/titlescreen/titleThing'))).scrollFactor.set(0.1,0.1);
 	bg.scale.set(2.25,2.25);
 	bg.updateHitbox();
 	bg.alpha = 0.33;
-	add(bg).scrollFactor.set(0.1,0.1);
 
 	add(screen = new FlxSprite().loadGraphic(Paths.image("menus/warning"))).angle = -3;
 		

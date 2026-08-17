@@ -1,8 +1,8 @@
 <!DOCTYPE codename-engine-stage>
 <stage zoom="0.9" folder="stages/classicStages/">
-   <sprite name="sky" x="-680" y="-360" sprite="veryAngreRon_sky" scroll="0.1"/>
-	<sprite name="clouds" x="-680" y="-360" sprite="veryAngreRon_clouds" scroll="0.2" scale="0.7"/>
-   <sprite name="street" x="-500" y="-300" sprite="veryAngreRon_ground"/>
+   <spr name="sky" x="-680" y="-360" sprite="veryAngreRon_sky" scroll="0.1"/>
+	<spr name="clouds" x="-680" y="-360" sprite="veryAngreRon_clouds" scroll="0.2" scale="0.7"/>
+   <spr name="street" x="-500" y="-300" sprite="veryAngreRon_ground"/>
    <girlfriend />
 	<dad />
 	<boyfriend camxoffset="40" camyoffset="0"/>	

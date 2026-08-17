@@ -1,6 +1,6 @@
 <!DOCTYPE codename-engine-stage>
 <stage zoom="0.8" name="obama" folder="stages/other/" >
-	<sprite name="bg" scale="2" x="100" y="-100" sprite="whitehouse" scroll="0.9"/>
+	<spr name="bg" scale="2" x="100" y="-100" sprite="whitehouse" scroll="0.9"/>
 	<solid name="nothing" y="-30" x="-250" width="1650" height="700"/>
 	<girlfriend />
 	<dad />

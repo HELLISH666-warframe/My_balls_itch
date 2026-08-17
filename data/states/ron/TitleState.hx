@@ -1,7 +1,7 @@
 import flixel.addons.display.FlxBackdrop;
 
-static var initialized:Bool = false;
-var time:Float = 0;
+static var initialized = false;
+var time = 0;
 
 var blackScreen,textGroup,ngSpr,curWacky,logoBl,logoBi,animScreen,titleText,animbarScrt,animbarScrb;//Kill me.
 
@@ -14,8 +14,7 @@ function create() {
 
 	FlxG.mouse.visible = false;
 
-	if(!initialized) new FlxTimer().start(1, ()-> {startIntro();});
-	else startIntro();//Reloading state wont cause errors.
+	startIntro();
 	if(FlxG.save.data.chrom) FlxG.camera.addShader(chrom);
 	FlxG.camera.addShader(color);
 }
@@ -23,11 +22,8 @@ function create() {
 function startIntro() {
 	if (!initialized) CoolUtil.playMenuSong(true);
 		
-	animScreen = new FlxSprite(-100, -90);
+	animScreen = CoolUtil.loadAnimatedGraphic(new FlxSprite(-100,-90),Paths.image('menus/titlescreen/trueTitleBgAnimated'),30);
 	animScreen.scale.set(2,2);
-	animScreen.frames = Paths.getSparrowAtlas('menus/titlescreen/trueTitleBgAnimated');
-	animScreen.animation.addByPrefix('animate', 'animate', 30, true);
-	animScreen.animation.play('animate');
 	animScreen.updateHitbox();
 	animbarScrt = new FlxBackdrop(Paths.image('menus/titlescreen/trueTitleBarTop'), FlxAxes.X, 0, 0);
 	animbarScrb = new FlxBackdrop(Paths.image('menus/titlescreen/trueTitleBarBottom'), FlxAxes.X, 0, 0);
@@ -50,9 +46,7 @@ function startIntro() {
 
 	add(textGroup = new FlxGroup());
 
-	ngSpr = new FlxSprite(0, FlxG.height * 0.52).loadGraphic(Paths.image('menus/titlescreen/newgrounds_logo'));
-	add(ngSpr);
-	ngSpr.visible = false;
+	add(ngSpr = new FlxSprite(0, FlxG.height * 0.52).loadGraphic(Paths.image('menus/titlescreen/newgrounds_logo'))).visible = false;
 	ngSpr.updateHitbox();
 	ngSpr.screenCenter(FlxAxes.X);
 	ngSpr.antialiasing = Options.antialiasing;
@@ -66,12 +60,11 @@ function startIntro() {
 
 	FlxTween.tween(blackeffect, {alpha: 0}, 1, {ease: FlxEase.quadInOut});
 
-	if (initialized) skipIntro();
-	else initialized = true;
+	initialized ? skipIntro() : initialized = true;
 }
 
 function getIntroTextShit():Array<Array<String>> {
-	var fullText:String = Assets.getText(Paths.txt('titlescreen/introText'));
+	var fullText = Assets.getText(Paths.txt('config/introText'));
 
 	var firstArray:Array<String> = fullText.split('\n');
 	var swagGoodArray:Array<Array<String>> = [];
@@ -81,7 +74,7 @@ function getIntroTextShit():Array<Array<String>> {
 	return swagGoodArray;
 }
 
-var transitioning:Bool = false;
+var transitioning = false;
 
 function update(elapsed:Float) {
 	time += elapsed;
@@ -95,9 +88,7 @@ function update(elapsed:Float) {
 		color.data.colors.value=[time/2];
 	}
 
-	var pressedEnter:Bool = controls.ACCEPT;
-
-	if (initialized && !transitioning && skippedIntro && pressedEnter) {
+	if (initialized && !transitioning && skippedIntro && controls.ACCEPT) {
 		FlxTween.tween(titleText, {y: titleText.y - 500}, 2, {ease: FlxEase.backIn});
 
 		FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
@@ -114,12 +105,10 @@ function update(elapsed:Float) {
 
 		transitioning = true;
 
-		new FlxTimer().start(1, ()-> {
-			FlxG.switchState(new MainMenuState());
-		});
+		new FlxTimer().start(1, ()-> {FlxG.switchState(new MainMenuState());});
 	}
 
-	if (initialized && pressedEnter && !skippedIntro) skipIntro();
+	if (initialized && controls.ACCEPT && !skippedIntro) skipIntro();
 	if (FlxG.keys.justPressed.F)  FlxG.fullscreen = !FlxG.fullscreen;
 }
 
@@ -139,37 +128,33 @@ function beatHit() {
 	if (!transitioning) {
 		FlxG.camera.zoom = 1.03;
 		FlxTween.tween(FlxG.camera, {zoom: 1}, 0.2, {ease: FlxEase.circOut});
-		animScreen.animation.play('animate', true);
+		animScreen.animation.play('idle', true);
 	}
 
 	switch (curBeat) {
-		case 1: createCoolText(['A', 'FUCKTON', 'OF', 'PEOPLE']);
-		case 3: createCoolText(['A', 'FUCKTON', 'OF', 'PEOPLE', 'PRESENT']);
-		case 4: createCoolText(null);
-		case 5: createCoolText(['in association with']);
-		case 7: createCoolText(['in association with', 'not patrick']);
-		ngSpr.visible = true;
-		case 8: createCoolText(null);
-		ngSpr.visible = false;
-		case 9: createCoolText([curWacky[0]]);
-		case 11: createCoolText([curWacky[0], curWacky[1]]);
-		case 12: createCoolText(null);
-		case 13: createCoolText(['LITERALLY EVERY']);
-		case 14: createCoolText(['LITERALLY EVERY', 'FANMADE FNF MOD']);
-		case 15: createCoolText(['LITERALLY EVERY', 'FANMADE FNF MOD', 'EVER']);
-		case 16: skipIntro();
+		case 1:createCoolText(['A', 'FUCKTON', 'OF', 'PEOPLE']);
+		case 3:createCoolText(['A', 'FUCKTON', 'OF', 'PEOPLE', 'PRESENT']);
+		case 4:createCoolText(null);
+		case 5:createCoolText(['in association with']);
+		case 7:createCoolText(['in association with', 'not patrick']); ngSpr.visible = true;
+		case 8:createCoolText(null); ngSpr.visible = false;
+		case 9:createCoolText([curWacky[0]]);
+		case 11:createCoolText([curWacky[0], curWacky[1]]);
+		case 12:createCoolText(null);
+		case 13:createCoolText(['LITERALLY EVERY']);
+		case 14:createCoolText(['LITERALLY EVERY', 'FANMADE FNF MOD']);
+		case 15:createCoolText(['LITERALLY EVERY', 'FANMADE FNF MOD', 'EVER']);
+		case 16:skipIntro();
 	}
 }
 
-var skippedIntro:Bool = false;
+var skippedIntro = false;
 function skipIntro() {
-	if (!skippedIntro) {
-		remove(ngSpr);
-		remove(textGroup);
-		FlxG.camera.flash(FlxColor.WHITE, 4);
-		FlxG.camera.addShader(god);
-		blackScreen.alpha = 0;
-
-		skippedIntro = true;
-	}
+	if (skippedIntro)return;
+	remove(ngSpr);
+	remove(textGroup);
+	FlxG.camera.flash(FlxColor.WHITE, 4);
+	FlxG.camera.addShader(god);
+	blackScreen.alpha = 0;
+	skippedIntro = true;
 }

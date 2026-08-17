@@ -80,6 +80,26 @@ class MusicPlayer extends FunkinSprite {
 				ronmusicvox.stop();
 			}
 		});
+		pause.has_toggle = true;
+
+		voices = new FlxUIButton(this.x + 247, this.y + 27);
+		voices.has_toggle = true;
+
+		for (i=>button in [backward=>"backwards", forward=>"forward", pause=>"pause", voices=>"voice", play=>"play"]) {
+			i.frames = t;
+			i.animation.addByPrefix("normal", button + " neutral");
+			i.animation.addByPrefix("highlight", button + " neutral");
+			i.animation.addByPrefix("pressed", button + " pressed");
+			i.updateHitbox();
+			add(i);
+		}
+		for (i=>j in [pause=>"pause", voices=>"voice", play=>"play"]) {
+			i.animation.addByPrefix("normal_toggled", j + " pressed");
+			i.animation.addByPrefix("highlight_toggled", j + " pressed");
+			i.animation.addByPrefix("pressed_toggled", j + " pressed");
+		}
+		
+		var header = new FlxUIDropDownHeader(244, new FlxSprite().makeGraphic(244, 16));
     }
     override function update(_) {
         super.update(_);

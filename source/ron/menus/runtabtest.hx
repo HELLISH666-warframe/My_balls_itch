@@ -1,16 +1,14 @@
 //UISTATE_CAN_GO_FUCKING_DIE.
+//TODO:MAKE_IT_RELY_ON_THE_GLOBAL_SCRIPT_INSTEAD.
 import funkin.editors.ui.IUIFocusable;
 import openfl.geom.Rectangle;
 import flixel.math.FlxPoint;
 import flixel.ui.FlxButton;
 using IUIFocusable;
 class runtabtest extends FunkinSprite {
-	public var ok,cancel,exit,help;
-	public var tab;
-	public var tabBar;
+	public var ok,cancel,exit,help,tab,tabBar;
 	var t = Paths.getSparrowAtlas("menus/windowsUi/run tab");
 	var cacheRect = new Rectangle();
-    public var tab:FunkinSprite;
 	public var typeText = new FunkinText(60, 644, 270, "", 18, false);
 	public var caretSpr;
 	var position:Int = 0;
@@ -30,7 +28,7 @@ class runtabtest extends FunkinSprite {
 		tab.animation.addByPrefix("d", "tab");
 		tab.animation.play("d");
 		FlxG.state.add(tab);
-		ok = new FlxButton(177, 685, "", ()-> {acceptCode(typeText.text);});
+		ok = new FlxButton(177, 685, "", ()-> {acceptCode(typeText.text);destroy();});
 		cancel = new FlxButton(258, 685, "", ()-> {destroy();});
 		help = new FlxButton(308, 566, "", ()-> {CoolUtil.openURL("www.facebook.com");});
 		exit = new FlxButton(327, 566, "", ()-> {destroy();});
@@ -64,6 +62,9 @@ class runtabtest extends FunkinSprite {
 	tabBar.alpha = 0;
 	tabBar.allowSwiping = true;
 	FlxG.state.add(tabBar);
+
+	FlxG.stage.window.onKeyDown.add(onKeyDown);
+	FlxG.stage.window.onTextInput.add(onTextInput);
     }
 	var justMousePos = FlxPoint.get();
 	var justTaskBarPos = FlxPoint.get();
@@ -134,7 +135,7 @@ class runtabtest extends FunkinSprite {
 		position = FlxMath.wrap(position + change, 0, typeText.text.length);
 	}
 	//import lime.ui.KeyCode;
-	function keyDownAH(e:KeyCode, modifier:KeyModifier) {
+	function onKeyDown(e:KeyCode, modifier:KeyModifier) {
 		if (!typing)return;
 		/*trace(FlxG.keys.firstJustPressed());
 		trace(e,CoolUtil.keyToString(e));*/
@@ -145,7 +146,6 @@ class runtabtest extends FunkinSprite {
 				changeSelection(-1);
 			}
 			case 13:acceptCode(typeText.text);
-			destroy();
 			case 37:changeSelection(-1);
 			case 39:changeSelection(1);
 		}
@@ -155,6 +155,8 @@ class runtabtest extends FunkinSprite {
 		FlxG.state.remove(this,true);
 		super.destroy();
 		trace("Wowie.");
+		FlxG.stage.window.onKeyDown.remove(onKeyDown);
+		FlxG.stage.window.onTextInput.remove(onTextInput);
 		FlxG.sound.keysAllowed=true;
 	}
 

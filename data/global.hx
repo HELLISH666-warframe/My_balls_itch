@@ -19,25 +19,9 @@ function new() {
     FlxG.mouse.load(Assets.getBitmapData(Paths.image('menus/cursor')),1,1,1);
     FlxG.mouse.visible = false;
 
-    FlxG.stage.window.onKeyDown.add(keyDn);
-	FlxG.stage.window.onTextInput.add(txtInput);
-
     for (i in Paths.getFolderContent('data/global')) importScript("data/global/"+Path.withoutExtension(i)); //import different global scripts for organization reasons
 }
 
-public static var keyDownAH:Array<(e:KeyCode,modifier:KeyModifier)-> Void> = [];
-function keyDn(e:KeyCode, modifier:KeyModifier) {
-    for(func in keyDownAH) {
-        func(e,modifier);
-    }
-}
-
-public static var texyDown:(e:KeyCode)->Void;
-function txtInput(e) {
-    for(func in texyDown) {
-        func(e);
-    }
-}
 import funkin.backend.system.Flags;
 Flags.DISABLE_WARNING_SCREEN=!FlxG.save.data.warning;
 public static var chromeOffset = (FlxG.save.data.chromeOffset/350);
@@ -52,18 +36,14 @@ function preStateSwitch() if(FlxG.save.data.rtx)makeTheModGood(false);
 
 function postStateSwitch() if(FlxG.save.data.rtx)makeTheModGood(true);
 
-//Test
-function update() {
-    if (FlxG.keys.pressed.SHIFT && FlxG.keys.pressed.H)
-        FlxG.switchState(new ModState('ron/test'));
-        //FlxG.switchState(new ModState('tco/credits_test',{"videoName": 'tco_credits',"canSkip":false}));
-}
-
 function destroy(){
     FlxG.mouse.useSystemCursor = true;
     FlxG.mouse.visible = false;
     if(FlxG.save.data.rtx)
     FlxG.game.removeShader(rtxShader);
-    FlxG.stage.window.onKeyDown.remove(onKeyDown);
-	FlxG.stage.window.onTextInput.remove(onTextInput);
+}
+
+function update() {
+    if (FlxG.keys.pressed.SHIFT && FlxG.keys.pressed.H)
+        FlxG.switchState(new ModState('ron/fp_test'));
 }

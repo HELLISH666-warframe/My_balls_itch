@@ -2,6 +2,6 @@
 <stage zoom="0.8" folder="stages/nothing/">
 	<dad />
 	<boyfriend />	
-	<sprite name="graadienter" x="-500" y="-400" scale="1" sprite="ss_gradient" scroll="0.2"/>
-	<sprite name="scanlines" x="0" y="0" scale="4" sprite="scanlines" scroll="0"/>
+	<spr name="graadienter" x="-500" y="-400" scale="1" sprite="ss_gradient" scroll="0.2"/>
+	<spr name="scanlines" x="0" y="0" scale="4" sprite="scanlines" scroll="0"/>
 </stage>

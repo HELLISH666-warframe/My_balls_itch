@@ -13,12 +13,3 @@ function postCreate() {
 	fx.screenCenter(FlxAxes.XY);
     insert(0,fx);*/
 }
-function stepHit(step) {
-    switch (step) {
-        case 256: graadienter.color = FlxColor.WHITE;
-        case 768: scanlines.visible=true;
-        graadienter.color = FlxColor.fromRGB(224,224,224);
-        case 1280: remove(scanlines);
-        graadienter.color = FlxColor.fromRGB(255,255,255);
-    }
-}

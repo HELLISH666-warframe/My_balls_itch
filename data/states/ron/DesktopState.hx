@@ -85,7 +85,6 @@ function create() {
 		iconI++;
 	}
 }
-
 function update(elapsed:Float) {
 	time += elapsed;
 	chrom.rOffset = chromeOffset*Math.sin(time);
@@ -125,8 +124,4 @@ function acceptCode(e) {
 		default: 
 		CoolUtil.openURL(e);
 	}
-}
-
-function destroy() {
-	FlxG.sound.keysAllowed=true;
 }
