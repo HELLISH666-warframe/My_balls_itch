@@ -12,4 +12,5 @@
 	<girlfriend x="150" y="-270" scroll="1"/>
    	<dad x="50" y="-300"/>
    	<boyfriend x="650" y="-300"/>
+	<combo x="350" y="50"/>
 </stage>
