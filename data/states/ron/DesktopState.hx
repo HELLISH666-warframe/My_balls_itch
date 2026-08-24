@@ -111,7 +111,7 @@ function acceptCode(e) {
 		case "full"|"full version"|"2.5"|"3.0"|"demo 3"|"next demo":CoolUtil.openURL("https://youtu.be/pNzGTCEmf3U");
 		case "2012": rainbowscreen.visible = false; FlxG.sound.play(Paths.sound('vine'));
 		case "winver":winVer = new Winver();
-		add(winVer.w);
+		add(winVer.group);
 		case "cdplayer"|'s': cdPlayer = new MusicPlayer();
 		FlxG.sound.music.volume = 0.01;
 		case "passionatedevs"|"test": //FlxG.save.data.rtxMode = !FlxG.save.data.rtxMode;

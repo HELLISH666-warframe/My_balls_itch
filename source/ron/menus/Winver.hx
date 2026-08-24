@@ -7,9 +7,9 @@ class Winver extends FlxButton {
   var ok:FlxButton;
   var exit:FlxButton;
 
-  var group:FlxTypedGroup<FlxButton>;
+  var group = new FlxTypedGroup();
 
-  override function new(x:Float, y:Float):Void {
+  override function new(?x:Float, ?y:Float):Void {
     super(x, y);
 
     loadGraphic(Paths.image("menus/windowsUI/winver"));
