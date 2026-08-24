@@ -1,4 +1,4 @@
-//UISTATE_CAN_GO_FUCKING_DIE.
+//UISTATE_CAN_GO_DIE.
 //TODO:MAKE_IT_RELY_ON_THE_GLOBAL_SCRIPT_INSTEAD.
 import funkin.editors.ui.IUIFocusable;
 import openfl.geom.Rectangle;

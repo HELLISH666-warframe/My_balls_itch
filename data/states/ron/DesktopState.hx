@@ -110,9 +110,11 @@ function acceptCode(e) {
 		case "ron": #if windows Sys.command("start RON.exe"); #end
 		case "full"|"full version"|"2.5"|"3.0"|"demo 3"|"next demo":CoolUtil.openURL("https://youtu.be/pNzGTCEmf3U");
 		case "2012": rainbowscreen.visible = false; FlxG.sound.play(Paths.sound('vine'));
-		case "winver":winVer = new Winver();case "cdplayer"|'s': cdPlayer = new MusicPlayer();
+		case "winver":winVer = new Winver();
+		add(winVer.w);
+		case "cdplayer"|'s': cdPlayer = new MusicPlayer();
 		FlxG.sound.music.volume = 0.01;
-		case "passionatedevs": //FlxG.save.data.rtxMode = !FlxG.save.data.rtxMode;
+		case "passionatedevs"|"test": //FlxG.save.data.rtxMode = !FlxG.save.data.rtxMode;
 		FlxG.camera.addShader(rtx = new CustomShader("NVIDIA RTX Architecture"));
 		case "ron-b"|'b-ron'|'flip':PlayState.loadSong('ron-bside', 'normal'); FlxG.switchState(new PlayState());
 		case "wasted-b":PlayState.loadSong('wasted-bside', 'normal'); FlxG.switchState(new PlayState());
