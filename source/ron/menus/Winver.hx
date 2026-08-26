@@ -2,48 +2,56 @@
 //GENUNINTLY_AWFUL_CODE_I_JUST_WANTED_SOMETHING_DONE_QUICK_OK?
 import flixel.math.FlxPoint;
 import flixel.ui.FlxButton;
+class Winver extends FunkinSprite {
+	var w = new FlxTypedGroup();
+	public var ok:FlxButton;
+	public var exit:FlxButton;
+	public var tabBar:FlxButton;
+    
+    public function new() {
+        super(55, 55);
 
-class Winver extends FlxButton {
-  var ok:FlxButton;
-  var exit:FlxButton;
+		loadGraphic(Paths.image("menus/windowsUi/winver"));
 
-  var group = new FlxTypedGroup();
-
-  override function new(?x:Float, ?y:Float):Void {
-    super(x, y);
-
-    loadGraphic(Paths.image("menus/windowsUI/winver"));
-
-    alpha = 0;
-    allowSwiping = true;
-
-    ok = makeButton(175, 238, 0, destroy);
-    exit = makeButton(300, 60, 1, destroy);
-  }
-
-  override function update(elapsed:Float):Void {
-    super.update(elapsed);
-
-    // Positioning logic, blah, blah, blah.
-  }
-
-  override function destroy():Void {
-    group.forEach(function(button:FlxButton) {
-      button.destroy();
-    });
-
-    super.destroy();
-  }
-
-  function makeButton(x:Float, y:Float, index:Int, callback:Void -> Void):FlxButton {
-    var button:FlxButton = new FlxButton(x, y, null, callback);
-
-    button.frames = Paths.getFrames("menus/windowsUI/run tab");
-    button.animation.addByPrefix("normal", '${index} neutral');
-    button.animation.addByPrefix("pressed", '${index} pressed');
-
-    group.add(button);
-
-    return button;
-  }
+		tabBar = new FlxButton(55, 55, "");
+		tabBar.width = 305;
+		tabBar.height = 20;
+		tabBar.alpha = 0;
+		tabBar.allowSwiping = true;
+		w.add(tabBar);
+		w.add(this);
+		ok = new FlxButton(175, 238, "", function() {destroy();});
+		exit = new FlxButton(340, 60, "", ok.onUp.callback);
+		for (i=>button in [ok,exit]) {
+			button.frames = Paths.getSparrowAtlas("menus/windowsUi/run tab");
+			var animIndex = ["ok", "exit"];
+			button.animation.addByPrefix("normal", animIndex[i] + " neutral");
+			button.animation.addByPrefix("highlight", animIndex[i] + " neutral");
+			button.animation.addByPrefix("pressed", animIndex[i] + " pressed");
+			button.updateHitbox();
+			w.add(button);
+		}
+    }
+    
+	var justMousePos = FlxPoint.get();
+	var justTaskBarPos = FlxPoint.get();
+	var movingTab = false;
+    override function update(_) {
+        super.update(_);
+		if (tabBar.status == 2) {
+			if (FlxG.mouse.justPressed) {justMousePos = FlxG.mouse.getScreenPosition(); justTaskBarPos.set(x,y);movingTab = true;}
+		}
+		if (FlxG.mouse.justReleased) movingTab = false;
+		if (movingTab) {
+			setPosition(Math.round(FlxG.mouse.getScreenPosition().x - justMousePos.x) + justTaskBarPos.x, Math.round(FlxG.mouse.getScreenPosition().y - justMousePos.y) + justTaskBarPos.y);
+			for (button in [ok, exit, tabBar]) {
+				var offsetIndex = [ok => [120, 183],exit => [285, 6],tabBar => [0, 0]];
+				button.setPosition(x + offsetIndex[button][0], y + offsetIndex[button][1]);
+			}
+		}
+    }
+	function destroy() {
+		FlxG.state.remove(w,true);
+		super.destroy();
+	}
 }
